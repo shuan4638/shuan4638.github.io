@@ -29,9 +29,9 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://i.imgur.com/Vf1IjUE.png">
 <meta property="article:published_time" content="2021-04-09T03:46:38.000Z">
-<meta property="article:modified_time" content="2021-04-09T04:04:50.468Z">
+<meta property="article:modified_time" content="2021-04-09T13:28:47.958Z">
 <meta property="article:author" content="Shuan Chen">
-<meta property="article:tag" content="AI assisted retrosynthesis">
+<meta property="article:tag" content="Step-by-step-software-setup-tutorial">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://i.imgur.com/Vf1IjUE.png">
 
@@ -183,7 +183,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2021-04-09 12:46:38 / Modified: 13:04:50" itemprop="dateCreated datePublished" datetime="2021-04-09T12:46:38+09:00">2021-04-09</time>
+              <time title="Created: 2021-04-09 12:46:38 / Modified: 22:28:47" itemprop="dateCreated datePublished" datetime="2021-04-09T12:46:38+09:00">2021-04-09</time>
             </span>
 
           
@@ -223,7 +223,7 @@
 <h2 id="Connect-to-web-browser"><a href="#Connect-to-web-browser" class="headerlink" title="Connect to web browser"></a>Connect to web browser</h2><p>Use your webbrowser to connect </p>
 <p>http://[server_ip_address]:8888/</p>
 <p>If you want to login this notebook with any server, find jupyter_notebook_config.py at <code>~/.jupyter</code><br>and change the following line (around line 204):</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c.NotebookApp.ip &#x3D; &#39;*&#39; # Allow all origin</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">c.NotebookApp.allow_origin &#x3D; &#39;*&#39; # line 48</span><br><span class="line">c.NotebookApp.ip &#x3D; &#39;0.0.0.0&#39;  # line 204</span><br></pre></td></tr></table></figure>
 <p>Your life has became easier by following these five steps</p>
 <h2 id="Import-virtual-environment"><a href="#Import-virtual-environment" class="headerlink" title="Import virtual environment"></a>Import virtual environment</h2><p>If you wish to use any virtual environment in Jupyter notebook, first intall ipykernel</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install --user ipykernel</span><br><span class="line">python -m ipykernel install --user --name&#x3D;[your-env-name]</span><br></pre></td></tr></table></figure>
@@ -241,6 +241,9 @@
     
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Step-by-step-software-setup-tutorial/" rel="tag"># Step-by-step-software-setup-tutorial</a>
+          </div>
 
         
 
@@ -330,6 +333,10 @@
           <span class="site-state-item-count">3</span>
           <span class="site-state-item-name">posts</span>
         </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">tags</span>
       </div>
   </nav>
 </div>
