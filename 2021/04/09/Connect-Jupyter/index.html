@@ -20,20 +20,18 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Commands to connect linux server to jupyter notebook on web browser for easier coding life Install Jupyter notebookInstall jupyter notebook on the server by simply run 1pip install jupyter (Optional)">
+  <meta name="description" content="Commands to connect linux server to jupyter notebook on web browser for easier coding life Install Jupyter notebookInstall jupyter notebook on the server by simply run 1pip install jupyter Run in back">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Connect Linux server to Jupyter notebook">
 <meta property="og:url" content="http://example.com/2021/04/09/Connect-Jupyter/index.html">
 <meta property="og:site_name" content="Shuan Chen">
-<meta property="og:description" content="Commands to connect linux server to jupyter notebook on web browser for easier coding life Install Jupyter notebookInstall jupyter notebook on the server by simply run 1pip install jupyter (Optional)">
+<meta property="og:description" content="Commands to connect linux server to jupyter notebook on web browser for easier coding life Install Jupyter notebookInstall jupyter notebook on the server by simply run 1pip install jupyter Run in back">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://i.imgur.com/Vf1IjUE.png">
 <meta property="article:published_time" content="2021-04-09T03:46:38.000Z">
-<meta property="article:modified_time" content="2021-04-09T13:28:47.958Z">
+<meta property="article:modified_time" content="2021-04-28T06:15:31.655Z">
 <meta property="article:author" content="Shuan Chen">
 <meta property="article:tag" content="Step-by-step-software-setup-tutorial">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://i.imgur.com/Vf1IjUE.png">
 
 <link rel="canonical" href="http://example.com/2021/04/09/Connect-Jupyter/">
 
@@ -181,10 +179,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2021-04-09 12:46:38 / Modified: 22:28:47" itemprop="dateCreated datePublished" datetime="2021-04-09T12:46:38+09:00">2021-04-09</time>
+              <time title="Created: 2021-04-09 12:46:38" itemprop="dateCreated datePublished" datetime="2021-04-09T12:46:38+09:00">2021-04-09</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-04-28 15:15:31" itemprop="dateModified" datetime="2021-04-28T15:15:31+09:00">2021-04-28</time>
+              </span>
 
           
             <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
@@ -207,12 +211,14 @@
         <p>Commands to connect linux server to jupyter notebook on web browser for easier coding life</p>
 <h2 id="Install-Jupyter-notebook"><a href="#Install-Jupyter-notebook" class="headerlink" title="Install Jupyter notebook"></a>Install Jupyter notebook</h2><p>Install jupyter notebook on the server by simply run</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install jupyter</span><br></pre></td></tr></table></figure>
-<h2 id="Optional-Run-in-background-session"><a href="#Optional-Run-in-background-session" class="headerlink" title="(Optional) Run in background session"></a>(Optional) Run in background session</h2><p>If you want to run it as a background session, run</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">screen</span><br><span class="line">screen -S jupyter-on-fly</span><br></pre></td></tr></table></figure>
-<p>and press Ctrl+a+d to detach after finishing Step 3</p>
+<h2 id="Run-in-background-session"><a href="#Run-in-background-session" class="headerlink" title="Run in background session"></a>Run in background session</h2><p>If you want to run it as a background session, run</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">screen -S jupyter-on-fly</span><br></pre></td></tr></table></figure>
+<p>and press Ctrl+a+d to detach</p>
 <h2 id="Password-setting-and-conncetion"><a href="#Password-setting-and-conncetion" class="headerlink" title="Password setting and conncetion"></a>Password setting and conncetion</h2><p>Set password</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jupyter notebook --generate-config</span><br></pre></td></tr></table></figure>
-<p>and </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">jupyter notebook --generate-config</span><br><span class="line">jupyter notebook password</span><br><span class="line">Enter password:  ****</span><br><span class="line">Verify password: ****</span><br></pre></td></tr></table></figure>
+<p>and you’re on the right path if it shows the following</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[NotebookPasswordApp] Wrote hashed password to &#x2F;Users&#x2F;you&#x2F;.jupyter&#x2F;jupyter_notebook_config.json</span><br></pre></td></tr></table></figure>
+
 <p>Connect server to notebook</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jupyter notebook --ip&#x3D;[server_ip_address] --port&#x3D;8888 --allow-root --no-browser</span><br></pre></td></tr></table></figure>
 
@@ -222,17 +228,20 @@
 
 <h2 id="Connect-to-web-browser"><a href="#Connect-to-web-browser" class="headerlink" title="Connect to web browser"></a>Connect to web browser</h2><p>Use your webbrowser to connect </p>
 <p>http://[server_ip_address]:8888/</p>
-<p>If you want to login this notebook with any server, find jupyter_notebook_config.py at <code>~/.jupyter</code><br>and change the following line (around line 204):</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">c.NotebookApp.allow_origin &#x3D; &#39;*&#39; # line 48</span><br><span class="line">c.NotebookApp.ip &#x3D; &#39;0.0.0.0&#39;  # line 204</span><br></pre></td></tr></table></figure>
-<p>Your life has became easier by following these five steps</p>
+<p>and type the password you set at the previous step</p>
 <h2 id="Import-virtual-environment"><a href="#Import-virtual-environment" class="headerlink" title="Import virtual environment"></a>Import virtual environment</h2><p>If you wish to use any virtual environment in Jupyter notebook, first intall ipykernel</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install --user ipykernel</span><br><span class="line">python -m ipykernel install --user --name&#x3D;[your-env-name]</span><br></pre></td></tr></table></figure>
 <p>It should print this if you do it correctly</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Installed kernelspec [your-env-name] in ~&#x2F;jupyter&#x2F;kernels&#x2F;[your-env-name]</span><br></pre></td></tr></table></figure>
-<p>You will be able to see something like this (for me I have virtual environment called “rdenv” for rdkit)</p>
-<p><img src="https://i.imgur.com/Vf1IjUE.png"></p>
-<p>If you want to uninstall, just simppy write</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install --user ipykernel</span><br><span class="line">jupyter kernelspec uninstall [your-env-name]</span><br></pre></td></tr></table></figure>
+
+<h2 id="Optional-connect-the-server-from-other-IP-address"><a href="#Optional-connect-the-server-from-other-IP-address" class="headerlink" title="(Optional) connect the server from other IP address"></a>(Optional) connect the server from other IP address</h2><p>If you want to login this notebook with any IP, find jupyter_notebook_config.py at <code>~/.jupyter</code><br>and change the following line (around line 204):</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">c.NotebookApp.allow_origin &#x3D; &#39;*&#39; # line 48</span><br><span class="line">c.NotebookApp.ip &#x3D; &#39;0.0.0.0&#39;  # line 204</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">You will be able to see something like this (for me I have virtual environment called &quot;rdenv&quot; for rdkit)</span><br><span class="line"></span><br><span class="line">![](https:&#x2F;&#x2F;i.imgur.com&#x2F;Vf1IjUE.png)</span><br><span class="line"></span><br><span class="line">If you want to uninstall, just simppy write</span><br></pre></td></tr></table></figure>
+<p>pip install –user ipykernel<br>jupyter kernelspec uninstall [your-env-name]</p>
+<pre><code>
+</code></pre>
 
     </div>
 
@@ -317,7 +326,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Install-Jupyter-notebook"><span class="nav-number">1.</span> <span class="nav-text">Install Jupyter notebook</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Optional-Run-in-background-session"><span class="nav-number">2.</span> <span class="nav-text">(Optional) Run in background session</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Password-setting-and-conncetion"><span class="nav-number">3.</span> <span class="nav-text">Password setting and conncetion</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Connect-to-web-browser"><span class="nav-number">4.</span> <span class="nav-text">Connect to web browser</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Import-virtual-environment"><span class="nav-number">5.</span> <span class="nav-text">Import virtual environment</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Install-Jupyter-notebook"><span class="nav-number">1.</span> <span class="nav-text">Install Jupyter notebook</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Run-in-background-session"><span class="nav-number">2.</span> <span class="nav-text">Run in background session</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Password-setting-and-conncetion"><span class="nav-number">3.</span> <span class="nav-text">Password setting and conncetion</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Connect-to-web-browser"><span class="nav-number">4.</span> <span class="nav-text">Connect to web browser</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Import-virtual-environment"><span class="nav-number">5.</span> <span class="nav-text">Import virtual environment</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Optional-connect-the-server-from-other-IP-address"><span class="nav-number">6.</span> <span class="nav-text">(Optional) connect the server from other IP address</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
