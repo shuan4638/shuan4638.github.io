@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Install PyTorchPyTorch is an open source machine learning library based on the Torch library primarily developed by Facebook’s AI Research lab (FAIR).Compared to Keras and Tensorflow, I found PyTorch">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Machine Learning with PyTorch">
+<meta property="og:url" content="http://example.com/2021/05/01/PyTorch/index.html">
+<meta property="og:site_name" content="Shuan Chen">
+<meta property="og:description" content="Install PyTorchPyTorch is an open source machine learning library based on the Torch library primarily developed by Facebook’s AI Research lab (FAIR).Compared to Keras and Tensorflow, I found PyTorch">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-05-01T06:04:55.000Z">
+<meta property="article:modified_time" content="2021-05-01T08:22:12.666Z">
+<meta property="article:author" content="Shuan Chen">
+<meta property="article:tag" content="AI assisted retrosynthesis">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2021/05/01/PyTorch/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Machine Learning with PyTorch | Shuan Chen</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Shuan Chen</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">PhD Student in KAIST CBE</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-resume">
+
+    <a href="/Resume/" rel="section"><i class="fa fa-file fa-fw"></i>Resume</a>
+
+  </li>
+        <li class="menu-item menu-item-music">
+
+    <a href="/Music/" rel="section"><i class="fa fa-music fa-fw"></i>Music</a>
+
+  </li>
+        <li class="menu-item menu-item-notebook">
+
+    <a href="/Notebook/" rel="section"><i class="fa fa-school fa-fw"></i>Notebook</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/01/PyTorch/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Shuan Chen">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shuan Chen">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Machine Learning with PyTorch
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-05-01 15:04:55 / Modified: 17:22:12" itemprop="dateCreated datePublished" datetime="2021-05-01T15:04:55+09:00">2021-05-01</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="Install-PyTorch"><a href="#Install-PyTorch" class="headerlink" title="Install PyTorch"></a>Install PyTorch</h2><p>PyTorch is an open source machine learning library based on the Torch library primarily developed by Facebook’s AI Research lab (FAIR).<br>Compared to Keras and Tensorflow, I found PyTorch much easier and flexible to use so I use pyTorch to most of my research now.</p>
+<p>*Strongly recommended to install conda before the PyTorch installation!<br>According to the official page of PyTorch, you can easily install PyTorch by </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda install pytorch torchvision torchaudio cudatoolkit&#x3D;10.2 -c pytorch</span><br></pre></td></tr></table></figure>
+<p>Remember to install the right cuda version that matches your computer otherwise it may not work.</p>
+<h2 id="Import-python-packages-and-load-data"><a href="#Import-python-packages-and-load-data" class="headerlink" title="Import python packages and load data"></a>Import python packages and load data</h2><p>For this practice, we are going to make a machine learning model to predict whether a compound will inhibit CYP450 (in particular CYP2C19 enzyme) or not.<br>Please have a look at <a target="_blank" rel="noopener" href="https://shuan4638.github.io/2021/04/09/rdkit">RDKit</a> if you don’t know what it is.<br>This dataset is curated from <a target="_blank" rel="noopener" href="https://pubchem.ncbi.nlm.nih.gov/bioassay/1851">PubChem BioAssay</a> and saved in <a target="_blank" rel="noopener" href="https://github.com/shuan4638/MCdropout-CYP450Classifcation/tree/master/data">my repository </a>.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">import pandas as pd</span><br><span class="line">import torch</span><br><span class="line">import torch.nn as nn</span><br><span class="line">from torch.utils.data import TensorDataset</span><br><span class="line">from sklearn.model_selection import train_test_split</span><br><span class="line"></span><br><span class="line">from rdkit import Chem, DataStructs</span><br><span class="line">from rdkit.Chem import AllChem</span><br><span class="line"></span><br><span class="line">target_enzyme &#x3D; &#39;2c19&#39; # total five enzymes in my repo [1a2, 2c19, 2c9, 2d6, 3a4]</span><br><span class="line">data_path &#x3D; &#39;https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;shuan4638&#x2F;MCdropout-CYP450Classifcation&#x2F;master&#x2F;data&#x2F;CYP_%s.csv&#39; % target_enzyme</span><br><span class="line">data &#x3D; pd.read_csv(data_path, header &#x3D; None)</span><br><span class="line">data.columns &#x3D; [&#39;SMILES&#39;, &#39;label&#39;]</span><br></pre></td></tr></table></figure>
+
+<p>After loading the compound (SMILES) and their label (1 for activate 0 for inactive), we transform the SMILES string to Morgan Fingerprint (ECFP4).<br>And then we split the data into train/validation/test dataset by the partition of 80%/10%/10%.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">def smiles2fp(smiles):</span><br><span class="line">    mol &#x3D; Chem.MolFromSmiles(smiles)</span><br><span class="line">    fp &#x3D; AllChem.GetMorganFingerprintAsBitVect(mol, 2, nBits&#x3D;1024)</span><br><span class="line">    arr &#x3D; np.zeros((1,))</span><br><span class="line">    DataStructs.ConvertToNumpyArray(fp, arr)</span><br><span class="line">    return arr</span><br><span class="line"></span><br><span class="line">data[&quot;FPs&quot;] &#x3D; data.SMILES.apply(smiles2fp)</span><br><span class="line">X &#x3D; np.stack(data.FPs.values)</span><br><span class="line">y &#x3D; np.stack(data.label.values)</span><br></pre></td></tr></table></figure>
+
+<p>Then we need to send these data into DataLoader for pytorch network to load and train/test.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">device &#x3D; torch.device(&#39;cuda&#39; if torch.cuda.is_available() else &#39;cpu&#39;)</span><br><span class="line">batch_size &#x3D; 128</span><br><span class="line"></span><br><span class="line">def numpy2tensor(array, device):</span><br><span class="line">    return torch.tensor(array, device &#x3D; device).float()</span><br><span class="line"></span><br><span class="line">X_train, X_test, y_train, y_test &#x3D; train_test_split(X, y,  test_size&#x3D;0.10)</span><br><span class="line">X_train, X_val, y_train, y_val &#x3D; train_test_split(X_train, y_train,  test_size&#x3D;0.11)</span><br><span class="line"></span><br><span class="line">train_dataset &#x3D; TensorDataset(numpy2tensor(X_train, device), numpy2tensor(y_train, device))</span><br><span class="line">val_dataset &#x3D; TensorDataset(numpy2tensor(X_val, device), numpy2tensor(y_val, device))</span><br><span class="line">test_dataset &#x3D; TensorDataset(numpy2tensor(X_test, device), numpy2tensor(y_test, device))</span><br><span class="line"></span><br><span class="line">train_loader &#x3D; torch.utils.data.DataLoader(dataset&#x3D;train_dataset,</span><br><span class="line">                                          batch_size&#x3D;batch_size,</span><br><span class="line">                                          shuffle&#x3D;True)</span><br><span class="line">val_loader &#x3D; torch.utils.data.DataLoader(dataset&#x3D;val_dataset,</span><br><span class="line">                                          batch_size&#x3D;batch_size,</span><br><span class="line">                                          shuffle&#x3D;False)</span><br><span class="line">test_loader &#x3D; torch.utils.data.DataLoader(dataset&#x3D;test_dataset,</span><br><span class="line">                                          batch_size&#x3D;batch_size,</span><br><span class="line">                                          shuffle&#x3D;False)</span><br></pre></td></tr></table></figure>
+
+<h2 id="Train-evaluation-and-test"><a href="#Train-evaluation-and-test" class="headerlink" title="Train, evaluation and test"></a>Train, evaluation and test</h2><p>Now, we define a network with very simple architechture (input-hidden-output) to fit the data:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">class Net(nn.Module):</span><br><span class="line">    def __init__(self, input_size, hidden_size):</span><br><span class="line">        super(Net, self).__init__()</span><br><span class="line">        self.fc1 &#x3D; nn.Linear(input_size, hidden_size) </span><br><span class="line">        self.relu &#x3D; nn.ReLU()</span><br><span class="line">        self.Dropout &#x3D; nn.Dropout(0.2)</span><br><span class="line">        self.fc2 &#x3D; nn.Linear(hidden_size, 2)  </span><br><span class="line">    </span><br><span class="line">    def forward(self, x):</span><br><span class="line">        out &#x3D; self.fc1(x)</span><br><span class="line">        out &#x3D; self.relu(out)</span><br><span class="line">        out &#x3D; self.Dropout(out)</span><br><span class="line">        out &#x3D; self.fc2(out)</span><br><span class="line">        return out</span><br><span class="line">    </span><br><span class="line">input_size &#x3D; X_train.shape[-1]</span><br><span class="line">hidden_size &#x3D; 512</span><br><span class="line">model &#x3D; Net(input_size, hidden_size)</span><br><span class="line">model &#x3D; model.to(device)</span><br></pre></td></tr></table></figure>
+
+<p>Define two functions that used to train and evaluate/test the model:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">def train_an_epoch(epoch, model, data_loader, loss_criterion, optimizer):</span><br><span class="line">    model.train()</span><br><span class="line">    total_loss &#x3D; 0</span><br><span class="line">    total_correct &#x3D; 0</span><br><span class="line">    for batch_id, batch_data in enumerate(data_loader):</span><br><span class="line">        fps, labels &#x3D; batch_data</span><br><span class="line">        optimizer.zero_grad() # Clean the gradient</span><br><span class="line">        output &#x3D; model(fps) # Forward pass of the mini-batch</span><br><span class="line">        </span><br><span class="line">        _, preds &#x3D; torch.max(output.data, 1) # Get prediction result</span><br><span class="line">        correct &#x3D; torch.sum(preds &#x3D;&#x3D; labels.data.long()) # Get # of correct prediction</span><br><span class="line">        total_correct +&#x3D; correct.data</span><br><span class="line">        </span><br><span class="line">        loss &#x3D; loss_criterion(output, labels.long()) # Compute the loss</span><br><span class="line">        loss.backward() # Calculate the gradient by backpropagation</span><br><span class="line">        optimizer.step() # Fit the weights according to the calculated gradient</span><br><span class="line">        total_loss +&#x3D; loss.item()</span><br><span class="line">        </span><br><span class="line">        if batch_id % 20 &#x3D;&#x3D; 0:</span><br><span class="line">            print(&#39;\repoch %d&#x2F;%d, batch %d&#x2F;%d, loss %.3f, accuracy %.3f&#39; % (epoch[0] + 1, epoch[1], batch_id + 1, len(data_loader), loss.item(), correct.cpu().numpy()&#x2F;len(labels)), end&#x3D;&#39;&#39;, flush&#x3D;True)</span><br><span class="line">    print(&#39;\nepoch %d&#x2F;%d, Training loss %.3f, accuracy: %.3f&#39; % (epoch[0] + 1, epoch[1], total_loss, total_correct.cpu().numpy()&#x2F;len(data_loader.dataset)))</span><br><span class="line">    return</span><br><span class="line">            </span><br><span class="line">def test_an_epoch(epoch, model, data_loader, loss_criterion):</span><br><span class="line">    model.eval()</span><br><span class="line">    total_loss &#x3D; 0</span><br><span class="line">    total_correct &#x3D; 0</span><br><span class="line">    with torch.no_grad(): # Does not need to calculate gradient in testing</span><br><span class="line">        for batch_id, batch_data in enumerate(data_loader):</span><br><span class="line">            fps, labels &#x3D; batch_data</span><br><span class="line">            output &#x3D; model(fps)</span><br><span class="line">            </span><br><span class="line">            _, preds &#x3D; torch.max(output.data, 1) </span><br><span class="line">            correct &#x3D; torch.sum(preds &#x3D;&#x3D; labels.data.long())</span><br><span class="line">            total_correct +&#x3D; correct.data</span><br><span class="line">            </span><br><span class="line">            loss &#x3D; loss_criterion(output, labels.long())</span><br><span class="line">            total_loss +&#x3D; loss.item()</span><br><span class="line">            _, preds &#x3D; torch.max(output.data, 1)</span><br><span class="line">    print(&#39;epoch %d&#x2F;%d, Evaluation loss %.3f, accuracy %.3f\n&#39; % (epoch[0] + 1, epoch[1], total_loss, total_correct.cpu().numpy()&#x2F;len(data_loader.dataset)))</span><br><span class="line">    return </span><br></pre></td></tr></table></figure>
+
+<p>Lastly, we set the hyperparameters and train the model by using the funciton you have defined and see how the training goes:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">num_epochs &#x3D; 10</span><br><span class="line">learning_rate &#x3D; 0.0001</span><br><span class="line"></span><br><span class="line">loss_criterion &#x3D; nn.CrossEntropyLoss()</span><br><span class="line">optimizer &#x3D; torch.optim.Adam(model.parameters(), lr&#x3D;learning_rate)</span><br><span class="line"></span><br><span class="line">print (&#39;Training...&#39;)</span><br><span class="line">for epoch in range(num_epochs):</span><br><span class="line">    epoch_set &#x3D; (epoch, num_epochs)</span><br><span class="line">    train_an_epoch(epoch_set, model, train_loader, loss_criterion, optimizer)</span><br><span class="line">    test_an_epoch(epoch_set, model, val_loader, loss_criterion)</span><br><span class="line">    </span><br><span class="line">print (&#39;Testing...&#39;)</span><br><span class="line">test_an_epoch(epoch_set, model, test_loader, loss_criterion)</span><br></pre></td></tr></table></figure>
+
+<p>Here is my result:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">Training...</span><br><span class="line">epoch 1&#x2F;10, batch 61&#x2F;71, loss 0.614, accuracy 0.680</span><br><span class="line">epoch 1&#x2F;10, Training loss 46.415, accuracy: 0.665</span><br><span class="line">epoch 1&#x2F;10, Evaluation loss 5.398, accuracy 0.741</span><br><span class="line"></span><br><span class="line">epoch 2&#x2F;10, batch 61&#x2F;71, loss 0.553, accuracy 0.695</span><br><span class="line">epoch 2&#x2F;10, Training loss 39.931, accuracy: 0.743</span><br><span class="line">epoch 2&#x2F;10, Evaluation loss 4.650, accuracy 0.772</span><br><span class="line"></span><br><span class="line">epoch 3&#x2F;10, batch 61&#x2F;71, loss 0.444, accuracy 0.805</span><br><span class="line">epoch 3&#x2F;10, Training loss 35.514, accuracy: 0.770</span><br><span class="line">epoch 3&#x2F;10, Evaluation loss 4.259, accuracy 0.784</span><br><span class="line"></span><br><span class="line">epoch 4&#x2F;10, batch 61&#x2F;71, loss 0.457, accuracy 0.789</span><br><span class="line">epoch 4&#x2F;10, Training loss 32.929, accuracy: 0.790</span><br><span class="line">epoch 4&#x2F;10, Evaluation loss 4.062, accuracy 0.804</span><br><span class="line"></span><br><span class="line">epoch 5&#x2F;10, batch 61&#x2F;71, loss 0.416, accuracy 0.828</span><br><span class="line">epoch 5&#x2F;10, Training loss 31.190, accuracy: 0.806</span><br><span class="line">epoch 5&#x2F;10, Evaluation loss 3.999, accuracy 0.795</span><br><span class="line"></span><br><span class="line">epoch 6&#x2F;10, batch 61&#x2F;71, loss 0.377, accuracy 0.844</span><br><span class="line">epoch 6&#x2F;10, Training loss 30.048, accuracy: 0.814</span><br><span class="line">epoch 6&#x2F;10, Evaluation loss 3.901, accuracy 0.811</span><br><span class="line"></span><br><span class="line">epoch 7&#x2F;10, batch 61&#x2F;71, loss 0.401, accuracy 0.836</span><br><span class="line">epoch 7&#x2F;10, Training loss 29.080, accuracy: 0.824</span><br><span class="line">epoch 7&#x2F;10, Evaluation loss 3.882, accuracy 0.811</span><br><span class="line"></span><br><span class="line">epoch 8&#x2F;10, batch 61&#x2F;71, loss 0.450, accuracy 0.805</span><br><span class="line">epoch 8&#x2F;10, Training loss 28.316, accuracy: 0.830</span><br><span class="line">epoch 8&#x2F;10, Evaluation loss 3.856, accuracy 0.813</span><br><span class="line"></span><br><span class="line">epoch 9&#x2F;10, batch 61&#x2F;71, loss 0.403, accuracy 0.812</span><br><span class="line">epoch 9&#x2F;10, Training loss 27.545, accuracy: 0.835</span><br><span class="line">epoch 9&#x2F;10, Evaluation loss 3.889, accuracy 0.809</span><br><span class="line"></span><br><span class="line">epoch 10&#x2F;10, batch 61&#x2F;71, loss 0.383, accuracy 0.828</span><br><span class="line">epoch 10&#x2F;10, Training loss 26.917, accuracy: 0.839</span><br><span class="line">epoch 10&#x2F;10, Evaluation loss 3.853, accuracy 0.819</span><br><span class="line"></span><br><span class="line">Testing...</span><br><span class="line">epoch 10&#x2F;10, Evaluation loss 3.908, accuracy 0.815</span><br></pre></td></tr></table></figure>
+
+<p>As we see from the result, the accuracy on test set is around 81.5%, which is not satisfied enough (usually we consider a model accurate if the accuracy can goes over 90% or even 95%).<br>There are several things you can do to improve the result:</p>
+<ol>
+<li>Change the hyperparameters, such as batch size or number of epochs (obviously we are training too few epochs).</li>
+<li>Change the model architecture. You can add more layer or add some tricks like regularizer or MC-dropout (like what I did in <a target="_blank" rel="noopener" href="https://github.com/shuan4638/MCdropout-CYP450Classifcation">my reo</a>. </li>
+<li>Or even you can try other network such as graph neural network (GNN), however I found Morgan Fingerprints work not worst then GNN when you try to predict biochemistry property.</li>
+</ol>
+<h2 id="Test-your-own-data"><a href="#Test-your-own-data" class="headerlink" title="Test your own data"></a>Test your own data</h2><p>If you found your network accurate and want to test on your own data, here is the function you can use.<br>In this case I predict the activity of phenol and the model suggest that it is not active toward the CYP2C19 enzyme.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">def predict_smiles(smiles, model, device):</span><br><span class="line">    fp &#x3D;smiles2fp(smiles).reshape(1,-1)</span><br><span class="line">    fp_tensor &#x3D; torch.tensor(fp, device&#x3D;device).float()</span><br><span class="line">    prediction &#x3D; nn.Softmax(1)(model(fp_tensor))</span><br><span class="line">    return prediction.data.cpu().numpy()[0][1]</span><br><span class="line"></span><br><span class="line">target_smiles &#x3D; &#39;Oc1ccccc1&#39; # Phenol</span><br><span class="line">predicted_activity &#x3D;  predict_smiles(target_smiles, model, device)</span><br><span class="line">print (predicted_activity) # 0.3101124</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/04/09/rdkit/" rel="prev" title="RDKit - the python package for in-silico molecule programming">
+      <i class="fa fa-chevron-left"></i> RDKit - the python package for in-silico molecule programming
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Install-PyTorch"><span class="nav-number">1.</span> <span class="nav-text">Install PyTorch</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Import-python-packages-and-load-data"><span class="nav-number">2.</span> <span class="nav-text">Import python packages and load data</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Train-evaluation-and-test"><span class="nav-number">3.</span> <span class="nav-text">Train, evaluation and test</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Test-your-own-data"><span class="nav-number">4.</span> <span class="nav-text">Test your own data</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Shuan Chen</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/shuan4638" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;shuan4638" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.youtube.com/channel/UCuxA_JEkqkllao4U8cFRxBQ" title="YouTube → https:&#x2F;&#x2F;www.youtube.com&#x2F;channel&#x2F;UCuxA_JEkqkllao4U8cFRxBQ" rel="noopener" target="_blank"><i class="fab fa-youtube fa-fw"></i>YouTube</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://instagram.com/shuan.75" title="Instagram → https:&#x2F;&#x2F;instagram.com&#x2F;shuan.75" rel="noopener" target="_blank"><i class="fab fa-instagram fa-fw"></i>Instagram</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shuan Chen</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'a9d3f758b5d4a5c716b9',
+      clientSecret: 'b368ce179713959f7f4248915c5c5d450c2a129d',
+      repo        : 'shuan4638.github.io',
+      owner       : 'shuan4638',
+      admin       : ['shuan4638'],
+      id          : 'cf0eb532548d0b6a179336172c987c12',
+        language: 'en',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>
