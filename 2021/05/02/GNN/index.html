@@ -29,7 +29,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://i.imgur.com/jb4ci6U.jpg">
 <meta property="article:published_time" content="2021-05-02T05:45:12.000Z">
-<meta property="article:modified_time" content="2021-05-02T07:53:22.638Z">
+<meta property="article:modified_time" content="2021-05-02T08:01:09.795Z">
 <meta property="article:author" content="Shuan Chen">
 <meta property="article:tag" content="AI assisted retrosynthesis">
 <meta name="twitter:card" content="summary">
@@ -183,7 +183,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2021-05-02 14:45:12 / Modified: 16:53:22" itemprop="dateCreated datePublished" datetime="2021-05-02T14:45:12+09:00">2021-05-02</time>
+              <time title="Created: 2021-05-02 14:45:12 / Modified: 17:01:09" itemprop="dateCreated datePublished" datetime="2021-05-02T14:45:12+09:00">2021-05-02</time>
             </span>
 
           
@@ -208,7 +208,7 @@
 <p>To make long story short, the purpose of GNN is to <strong>update the node features (atom) in the graph (molecule)</strong> to simulate the electron interaction effect in the molecule. Thus, GNN model is particularly effective in predicting quantum chemisrty and reaction prediction.</p>
 <p>Threre are many types of GNN, but the main four steps in GNN are the same, namely<br><strong>1. Initializing Node Feature</strong><br><strong>2. Node Feature Embedding and Updating (Main GNN algorithm)</strong><br><strong>3. Readout</strong><br><strong>4. Prediction</strong></p>
 <p><img src="https://i.imgur.com/jb4ci6U.jpg" alt="GNN"></p>
-<p>For convinience, I use <a target="_blank" rel="noopener" href="https://lifesci.dgl.ai/index.html">DGL-LifeSci</a> to perform all the fuctions.<br>To install dgl-lifesci, run</p>
+<p>For convinience, I use <a href="https://lifesci.dgl.ai/index.html">DGL-LifeSci</a> to perform all the functions.<br>To install dgl-lifesci, run</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda install -c dglteam dgllife</span><br></pre></td></tr></table></figure>
 <h2 id="Initializing-Node-Feature"><a href="#Initializing-Node-Feature" class="headerlink" title="Initializing Node Feature"></a>Initializing Node Feature</h2><p>To start the GNN training, you need to one-hot initialize all the atom and bond features by self-defined function, such as atomic number and bond type.<br>For me, I chose <code>WeaveAtomFeaturizer</code> for atom and <code>CanonicalBondFeaturizer</code> for bond.</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">import torch</span><br><span class="line">import sklearn</span><br><span class="line">import dgl</span><br><span class="line">from dgllife.utils import smiles_to_bigraph, WeaveAtomFeaturizer, CanonicalBondFeaturizer</span><br><span class="line"></span><br><span class="line">def GraphFromSmiles(smiles):</span><br><span class="line">    node_featurizer &#x3D; WeaveAtomFeaturizer()</span><br><span class="line">    edge_featurizer &#x3D; CanonicalBondFeaturizer()</span><br><span class="line">    return smiles_to_bigraph(smiles, node_featurizer &#x3D; node_featurizer, edge_featurizer &#x3D; edge_featurizer)</span><br><span class="line"></span><br><span class="line">smiles &#x3D; &#39;O&#x3D;C1NC(&#x3D;O)CCC1N3C(&#x3D;O)c2cccc(c2C3)N&#39; # Lenalidomide</span><br><span class="line">graph &#x3D; GraphFromSmiles(smiles)</span><br></pre></td></tr></table></figure>
@@ -228,7 +228,7 @@
 <p>If you print your output, you will get something like</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tensor([0.7552], grad_fn&#x3D;&lt;SigmoidBackward&gt;)</span><br></pre></td></tr></table></figure>
 
-<p>Get your data ready and train your model with GNN!! <i class="fa fa-smile-o"></i><br>(See <a target="_blank" rel="noopener" href="https://shuan4638.github.io/2021/05/01/PyTorch/">pytorch tutorial</a> if you do not know how to train pytorch model!</p>
+<p>Get your data ready and train your model with GNN!! <i class="fa fa-smile-o"></i><br>(See <a href="https://shuan4638.github.io/2021/05/01/PyTorch/">pytorch tutorial</a> if you do not know how to train pytorch model!</p>
 
     </div>
 
