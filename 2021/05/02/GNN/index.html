@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Graph Neural Network (GNN)Due to the high similarity between molecule and (heterogeneous) graph, GNN has been introduced to predict molecule property in recent years. As an introduciton of GNN, this a">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Graph Neural Network (GNN) for chemistry">
+<meta property="og:url" content="http://example.com/2021/05/02/GNN/index.html">
+<meta property="og:site_name" content="Shuan Chen">
+<meta property="og:description" content="Graph Neural Network (GNN)Due to the high similarity between molecule and (heterogeneous) graph, GNN has been introduced to predict molecule property in recent years. As an introduciton of GNN, this a">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.imgur.com/jb4ci6U.jpg">
+<meta property="article:published_time" content="2021-05-02T05:45:12.000Z">
+<meta property="article:modified_time" content="2021-05-02T07:53:22.638Z">
+<meta property="article:author" content="Shuan Chen">
+<meta property="article:tag" content="AI assisted retrosynthesis">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/jb4ci6U.jpg">
+
+<link rel="canonical" href="http://example.com/2021/05/02/GNN/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Graph Neural Network (GNN) for chemistry | Shuan Chen</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Shuan Chen</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">PhD Student in KAIST CBE</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-resume">
+
+    <a href="/Resume/" rel="section"><i class="fa fa-file fa-fw"></i>Resume</a>
+
+  </li>
+        <li class="menu-item menu-item-music">
+
+    <a href="/Music/" rel="section"><i class="fa fa-music fa-fw"></i>Music</a>
+
+  </li>
+        <li class="menu-item menu-item-notebook">
+
+    <a href="/Notebook/" rel="section"><i class="fa fa-school fa-fw"></i>Notebook</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/02/GNN/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Shuan Chen">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shuan Chen">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Graph Neural Network (GNN) for chemistry
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-05-02 14:45:12 / Modified: 16:53:22" itemprop="dateCreated datePublished" datetime="2021-05-02T14:45:12+09:00">2021-05-02</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="Graph-Neural-Network-GNN"><a href="#Graph-Neural-Network-GNN" class="headerlink" title="Graph Neural Network (GNN)"></a>Graph Neural Network (GNN)</h2><p>Due to the high similarity between molecule and (heterogeneous) graph, GNN has been introduced to predict molecule property in recent years. As an introduciton of GNN, this article won’t go through the mathematical detail but only introduce the concept of GNN algorithm.</p>
+<p>To make long story short, the purpose of GNN is to <strong>update the node features (atom) in the graph (molecule)</strong> to simulate the electron interaction effect in the molecule. Thus, GNN model is particularly effective in predicting quantum chemisrty and reaction prediction.</p>
+<p>Threre are many types of GNN, but the main four steps in GNN are the same, namely<br><strong>1. Initializing Node Feature</strong><br><strong>2. Node Feature Embedding and Updating (Main GNN algorithm)</strong><br><strong>3. Readout</strong><br><strong>4. Prediction</strong></p>
+<p><img src="https://i.imgur.com/jb4ci6U.jpg" alt="GNN"></p>
+<p>For convinience, I use <a target="_blank" rel="noopener" href="https://lifesci.dgl.ai/index.html">DGL-LifeSci</a> to perform all the fuctions.<br>To install dgl-lifesci, run</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda install -c dglteam dgllife</span><br></pre></td></tr></table></figure>
+<h2 id="Initializing-Node-Feature"><a href="#Initializing-Node-Feature" class="headerlink" title="Initializing Node Feature"></a>Initializing Node Feature</h2><p>To start the GNN training, you need to one-hot initialize all the atom and bond features by self-defined function, such as atomic number and bond type.<br>For me, I chose <code>WeaveAtomFeaturizer</code> for atom and <code>CanonicalBondFeaturizer</code> for bond.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">import torch</span><br><span class="line">import sklearn</span><br><span class="line">import dgl</span><br><span class="line">from dgllife.utils import smiles_to_bigraph, WeaveAtomFeaturizer, CanonicalBondFeaturizer</span><br><span class="line"></span><br><span class="line">def GraphFromSmiles(smiles):</span><br><span class="line">    node_featurizer &#x3D; WeaveAtomFeaturizer()</span><br><span class="line">    edge_featurizer &#x3D; CanonicalBondFeaturizer()</span><br><span class="line">    return smiles_to_bigraph(smiles, node_featurizer &#x3D; node_featurizer, edge_featurizer &#x3D; edge_featurizer)</span><br><span class="line"></span><br><span class="line">smiles &#x3D; &#39;O&#x3D;C1NC(&#x3D;O)CCC1N3C(&#x3D;O)c2cccc(c2C3)N&#39; # Lenalidomide</span><br><span class="line">graph &#x3D; GraphFromSmiles(smiles)</span><br></pre></td></tr></table></figure>
+<p>If you print the variable graph, it should show</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Graph(num_nodes&#x3D;19, num_edges&#x3D;42,</span><br><span class="line">      ndata_schemes&#x3D;&#123;&#39;h&#39;: Scheme(shape&#x3D;(27,), dtype&#x3D;torch.float32)&#125;</span><br><span class="line">      edata_schemes&#x3D;&#123;&#39;e&#39;: Scheme(shape&#x3D;(12,), dtype&#x3D;torch.float32)&#125;)</span><br></pre></td></tr></table></figure>
+<p>Which means you have 19 atoms and 42 bonds in the molecule, where each atom has a feature vector with 27 features and each bond has a feature vector with 13 features.</p>
+<h2 id="Node-Feature-Embedding-and-Updating"><a href="#Node-Feature-Embedding-and-Updating" class="headerlink" title="Node Feature Embedding and Updating"></a>Node Feature Embedding and Updating</h2><p>Here is the core part of GNN, each atoms are embedded by linear layer and update by their environment (atoms and bonds) by GNN algorithm. There are many types of GNNs depending on differnt neural network used to update the atom:<br>If you use <strong>convolution</strong> algorithm, it is called <strong>Graph Convolutional Neural Network (GCN)</strong>.<br>If you use <strong>attention</strong> mechanism, it is called <strong>Graph Attention Neural Network (GAT)</strong>.<br>If you use <strong>convolution and recurrent</strong> algorithm, it is called <strong>Message Passing Neural Network (MPNN)</strong>.</p>
+<p>I will do GCN in this tutorial, however you can change to other network as you wish.<br>Because graph convoluion is already defined in dgl module, we only need to import and connect the GCN layers.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">import torch.nn as nn</span><br><span class="line">import torch.nn.functional as F</span><br><span class="line"></span><br><span class="line">from dgl.nn.pytorch import GraphConv</span><br><span class="line"></span><br><span class="line">class GCN(nn.Module):</span><br><span class="line">    def __init__(self, in_feats, hidden_feats):</span><br><span class="line">        super(GCN, self).__init__()</span><br><span class="line">        </span><br><span class="line">        self.gnn_layers &#x3D; nn.ModuleList()</span><br><span class="line">        for i in range(len(hidden_feats)):</span><br><span class="line">            self.gnn_layers.append(GraphConv(in_feats, hidden_feats[i]))</span><br><span class="line">            in_feats &#x3D; hidden_feats[i]</span><br><span class="line"></span><br><span class="line">    def forward(self, g, feats):</span><br><span class="line">        for gnn in self.gnn_layers:</span><br><span class="line">            feats &#x3D; gnn(g, feats)</span><br><span class="line">        return feats</span><br></pre></td></tr></table></figure>
+<h2 id="Readout"><a href="#Readout" class="headerlink" title="Readout"></a>Readout</h2><p>The readout funciton is used to summurize the feature of the molecule from the updated atoms. One can use recurrent, convolution network or Set2Set to do readout. But I found many people just use summation or average and still get fine results.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">class Readout(nn.Module):</span><br><span class="line">    def __init__(self, mode):</span><br><span class="line">        super(Readout, self).__init__()</span><br><span class="line">        self.mode &#x3D; mode</span><br><span class="line">        </span><br><span class="line">    def forward(self, feats):</span><br><span class="line">        if self.mode &#x3D;&#x3D; &#39;mean&#39;:</span><br><span class="line">            feats &#x3D; torch.mean(feats, 0)</span><br><span class="line">        elif self.mode &#x3D;&#x3D; &#39;sum&#39;:</span><br><span class="line">            feats &#x3D; torch.sum(feats, 0)</span><br><span class="line">        return feats</span><br></pre></td></tr></table></figure>
+<h2 id="Prediction"><a href="#Prediction" class="headerlink" title="Prediction"></a>Prediction</h2><p>Lastly, you can simply make a linear layer to fit the readout feature to your data label.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">class Predictor(nn.Module):</span><br><span class="line">    def __init__(self, in_feats):</span><br><span class="line">        super(Predictor, self).__init__()</span><br><span class="line">        self.predictor &#x3D; nn.linear(in_feats, 1)</span><br><span class="line">    def forward(self, feats):</span><br><span class="line">        output &#x3D; self.predictor(feats)</span><br><span class="line">        return nn.Sigmoid(output)</span><br></pre></td></tr></table></figure>
+
+<h2 id="GNN-Netowrk"><a href="#GNN-Netowrk" class="headerlink" title="GNN Netowrk"></a>GNN Netowrk</h2><p>Now we have defined all the needed components, put them together and make an end-to-end model!</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">class GNN(nn.Module):</span><br><span class="line">    def __init__(self, in_feats, hidden_feats):</span><br><span class="line">        super(GNN, self).__init__()</span><br><span class="line">        self.gcn &#x3D; GCN(in_feats, hidden_feats)</span><br><span class="line">        self.readout &#x3D; Readout(&#39;sum&#39;)</span><br><span class="line">        self.predictor &#x3D; Predictor(hidden_feats[-1])</span><br><span class="line">    def forward(self, graph, feats):</span><br><span class="line">        feats &#x3D; self.gcn(graph, feats)</span><br><span class="line">        feats &#x3D; self.readout(feats)</span><br><span class="line">        output &#x3D; self.predictor(feats)</span><br><span class="line">        return output</span><br><span class="line">        </span><br><span class="line">hidden_size &#x3D; [256, 64, 32]</span><br><span class="line">node_feats &#x3D; graph.ndata.pop(&#39;h&#39;)</span><br><span class="line">model &#x3D; GNN(node_feats.shape[-1], hidden_size)</span><br><span class="line">output &#x3D; model(graph, node_feats)</span><br></pre></td></tr></table></figure>
+<p>If you print your output, you will get something like</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tensor([0.7552], grad_fn&#x3D;&lt;SigmoidBackward&gt;)</span><br></pre></td></tr></table></figure>
+
+<p>Get your data ready and train your model with GNN!! <i class="fa fa-smile-o"></i><br>(See <a target="_blank" rel="noopener" href="https://shuan4638.github.io/2021/05/01/PyTorch/">pytorch tutorial</a> if you do not know how to train pytorch model!</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/05/01/PyTorch/" rel="prev" title="Machine Learning with PyTorch">
+      <i class="fa fa-chevron-left"></i> Machine Learning with PyTorch
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Graph-Neural-Network-GNN"><span class="nav-number">1.</span> <span class="nav-text">Graph Neural Network (GNN)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Initializing-Node-Feature"><span class="nav-number">2.</span> <span class="nav-text">Initializing Node Feature</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Node-Feature-Embedding-and-Updating"><span class="nav-number">3.</span> <span class="nav-text">Node Feature Embedding and Updating</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Readout"><span class="nav-number">4.</span> <span class="nav-text">Readout</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Prediction"><span class="nav-number">5.</span> <span class="nav-text">Prediction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GNN-Netowrk"><span class="nav-number">6.</span> <span class="nav-text">GNN Netowrk</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Shuan Chen</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/shuan4638" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;shuan4638" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.youtube.com/channel/UCuxA_JEkqkllao4U8cFRxBQ" title="YouTube → https:&#x2F;&#x2F;www.youtube.com&#x2F;channel&#x2F;UCuxA_JEkqkllao4U8cFRxBQ" rel="noopener" target="_blank"><i class="fab fa-youtube fa-fw"></i>YouTube</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://instagram.com/shuan.75" title="Instagram → https:&#x2F;&#x2F;instagram.com&#x2F;shuan.75" rel="noopener" target="_blank"><i class="fab fa-instagram fa-fw"></i>Instagram</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shuan Chen</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'a9d3f758b5d4a5c716b9',
+      clientSecret: 'b368ce179713959f7f4248915c5c5d450c2a129d',
+      repo        : 'shuan4638.github.io',
+      owner       : 'shuan4638',
+      admin       : ['shuan4638'],
+      id          : 'ecb7feb6ce96e3b781078e298770f83e',
+        language: 'en',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>

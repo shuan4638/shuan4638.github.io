@@ -20,18 +20,20 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Install PyTorchPyTorch is an open source machine learning library based on the Torch library primarily developed by Facebook’s AI Research lab (FAIR).Compared to Keras and Tensorflow, I found PyTorch">
+  <meta name="description" content="Machine learningIn most of the cases, there are 3 steps to perform machine learning.  Load or Collect Data Data Preprocessing  Train, Validate and Test your model  For machine learning in chemistry, d">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Machine Learning with PyTorch">
 <meta property="og:url" content="http://example.com/2021/05/01/PyTorch/index.html">
 <meta property="og:site_name" content="Shuan Chen">
-<meta property="og:description" content="Install PyTorchPyTorch is an open source machine learning library based on the Torch library primarily developed by Facebook’s AI Research lab (FAIR).Compared to Keras and Tensorflow, I found PyTorch">
+<meta property="og:description" content="Machine learningIn most of the cases, there are 3 steps to perform machine learning.  Load or Collect Data Data Preprocessing  Train, Validate and Test your model  For machine learning in chemistry, d">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.imgur.com/Tr15st8.jpg">
 <meta property="article:published_time" content="2021-05-01T06:04:55.000Z">
-<meta property="article:modified_time" content="2021-05-01T08:33:54.805Z">
+<meta property="article:modified_time" content="2021-05-02T07:05:35.903Z">
 <meta property="article:author" content="Shuan Chen">
 <meta property="article:tag" content="AI assisted retrosynthesis">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/Tr15st8.jpg">
 
 <link rel="canonical" href="http://example.com/2021/05/01/PyTorch/">
 
@@ -179,10 +181,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2021-05-01 15:04:55 / Modified: 17:33:54" itemprop="dateCreated datePublished" datetime="2021-05-01T15:04:55+09:00">2021-05-01</time>
+              <time title="Created: 2021-05-01 15:04:55" itemprop="dateCreated datePublished" datetime="2021-05-01T15:04:55+09:00">2021-05-01</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-05-02 16:05:35" itemprop="dateModified" datetime="2021-05-02T16:05:35+09:00">2021-05-02</time>
+              </span>
 
           
             <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
@@ -202,20 +210,28 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="Install-PyTorch"><a href="#Install-PyTorch" class="headerlink" title="Install PyTorch"></a>Install PyTorch</h2><p>PyTorch is an open source machine learning library based on the Torch library primarily developed by Facebook’s AI Research lab (FAIR).<br>Compared to Keras and Tensorflow, I found PyTorch much easier and flexible to use so I use pyTorch to most of my research now.</p>
-<p>*Strongly recommended to install conda before the PyTorch installation!<br>According to the official page of PyTorch, you can easily install PyTorch by </p>
+        <h2 id="Machine-learning"><a href="#Machine-learning" class="headerlink" title="Machine learning"></a>Machine learning</h2><p>In most of the cases, there are 3 steps to perform machine learning.</p>
+<ol>
+<li>Load or Collect Data</li>
+<li>Data Preprocessing </li>
+<li>Train, Validate and Test your model</li>
+</ol>
+<p>For machine learning in chemistry, data loading and preprocessing (step 1 and 2) is usually the most difficult part because it needs high domain knowledge.<br>Once you have your data prepared, you can make your own model by simply implement the developed python package (PyTorch ro Tensorflow).<br><img src="https://i.imgur.com/Tr15st8.jpg" alt="Framework"></p>
+<h2 id="Install-PyTorch"><a href="#Install-PyTorch" class="headerlink" title="Install PyTorch"></a>Install PyTorch</h2><p>PyTorch is an open source machine learning library based on the Torch library primarily developed by Facebook’s AI Research lab (FAIR).<br>Compared to Keras and Tensorflow, I found PyTorch much easier and flexible to use so I use pyTorch to most of my research now.</p>
+<p><strong>Strongly recommended to install conda before the PyTorch installation!</strong><br>According to the official page of PyTorch, you can easily install PyTorch by </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda install pytorch torchvision torchaudio cudatoolkit&#x3D;10.2 -c pytorch</span><br></pre></td></tr></table></figure>
 <p>Remember to install the right cuda version that matches your computer otherwise it may not work.</p>
-<h2 id="Import-python-packages-and-load-data"><a href="#Import-python-packages-and-load-data" class="headerlink" title="Import python packages and load data"></a>Import python packages and load data</h2><p>For this practice, we are going to make a machine learning model to predict whether a compound will inhibit CYP450 (in particular CYP2C19 enzyme) or not.<br>Please have a look at <a target="_blank" rel="noopener" href="https://shuan4638.github.io/2021/04/09/rdkit">RDKit</a> if you don’t know what it is.<br>This dataset is curated from <a target="_blank" rel="noopener" href="https://pubchem.ncbi.nlm.nih.gov/bioassay/1851">PubChem BioAssay</a> and saved in <a target="_blank" rel="noopener" href="https://github.com/shuan4638/MCdropout-CYP450Classifcation/tree/master/data">my repository </a>.</p>
+<h2 id="Load-data"><a href="#Load-data" class="headerlink" title="Load data"></a>Load data</h2><p>For this practice, we are going to make a machine learning model to predict whether a compound will inhibit CYP450 (in particular CYP2C19 enzyme) or not.<br>Please have a look at <a target="_blank" rel="noopener" href="https://shuan4638.github.io/2021/04/09/rdkit">RDKit</a> if you don’t know what it is.<br>This dataset is curated from <a target="_blank" rel="noopener" href="https://pubchem.ncbi.nlm.nih.gov/bioassay/1851">PubChem BioAssay</a> and saved in <a target="_blank" rel="noopener" href="https://github.com/shuan4638/MCdropout-CYP450Classifcation/tree/master/data">my repository </a>.</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">import pandas as pd</span><br><span class="line">import torch</span><br><span class="line">import torch.nn as nn</span><br><span class="line">from torch.utils.data import TensorDataset</span><br><span class="line">from sklearn.model_selection import train_test_split</span><br><span class="line"></span><br><span class="line">from rdkit import Chem, DataStructs</span><br><span class="line">from rdkit.Chem import AllChem</span><br><span class="line"></span><br><span class="line">target_enzyme &#x3D; &#39;2c19&#39; # total five enzymes in my repo [1a2, 2c19, 2c9, 2d6, 3a4]</span><br><span class="line">data_path &#x3D; &#39;https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;shuan4638&#x2F;MCdropout-CYP450Classifcation&#x2F;master&#x2F;data&#x2F;CYP_%s.csv&#39; % target_enzyme</span><br><span class="line">data &#x3D; pd.read_csv(data_path, header &#x3D; None)</span><br><span class="line">data.columns &#x3D; [&#39;SMILES&#39;, &#39;label&#39;]</span><br></pre></td></tr></table></figure>
 
-<p>After loading the compound (SMILES) and their label (1 for activate 0 for inactive), we transform the SMILES string to Morgan Fingerprint (ECFP4).<br>And then we split the data into train/validation/test dataset by the partition of 80%/10%/10%.</p>
+
+<h2 id="Data-Preprocessing"><a href="#Data-Preprocessing" class="headerlink" title="Data Preprocessing"></a>Data Preprocessing</h2><p>After loading the compound (SMILES) and their label (1 for activate 0 for inactive), we transform the SMILES string to Morgan Fingerprint (ECFP4).<br>And then we split the data into train/validation/test dataset by the partition of 80%/10%/10%.</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">def smiles2fp(smiles):</span><br><span class="line">    mol &#x3D; Chem.MolFromSmiles(smiles)</span><br><span class="line">    fp &#x3D; AllChem.GetMorganFingerprintAsBitVect(mol, 2, nBits&#x3D;1024)</span><br><span class="line">    arr &#x3D; np.zeros((1,))</span><br><span class="line">    DataStructs.ConvertToNumpyArray(fp, arr)</span><br><span class="line">    return arr</span><br><span class="line"></span><br><span class="line">data[&quot;FPs&quot;] &#x3D; data.SMILES.apply(smiles2fp)</span><br><span class="line">X &#x3D; np.stack(data.FPs.values)</span><br><span class="line">y &#x3D; np.stack(data.label.values)</span><br></pre></td></tr></table></figure>
 
 <p>Then we need to send these data into DataLoader for pytorch network to load and train/test.</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">device &#x3D; torch.device(&#39;cuda&#39; if torch.cuda.is_available() else &#39;cpu&#39;)</span><br><span class="line">batch_size &#x3D; 128</span><br><span class="line"></span><br><span class="line">def numpy2tensor(array, device):</span><br><span class="line">    return torch.tensor(array, device &#x3D; device).float()</span><br><span class="line"></span><br><span class="line">X_train, X_test, y_train, y_test &#x3D; train_test_split(X, y,  test_size&#x3D;0.10)</span><br><span class="line">X_train, X_val, y_train, y_val &#x3D; train_test_split(X_train, y_train,  test_size&#x3D;0.11)</span><br><span class="line"></span><br><span class="line">train_dataset &#x3D; TensorDataset(numpy2tensor(X_train, device), numpy2tensor(y_train, device))</span><br><span class="line">val_dataset &#x3D; TensorDataset(numpy2tensor(X_val, device), numpy2tensor(y_val, device))</span><br><span class="line">test_dataset &#x3D; TensorDataset(numpy2tensor(X_test, device), numpy2tensor(y_test, device))</span><br><span class="line"></span><br><span class="line">train_loader &#x3D; torch.utils.data.DataLoader(dataset&#x3D;train_dataset,</span><br><span class="line">                                          batch_size&#x3D;batch_size,</span><br><span class="line">                                          shuffle&#x3D;True)</span><br><span class="line">val_loader &#x3D; torch.utils.data.DataLoader(dataset&#x3D;val_dataset,</span><br><span class="line">                                          batch_size&#x3D;batch_size,</span><br><span class="line">                                          shuffle&#x3D;False)</span><br><span class="line">test_loader &#x3D; torch.utils.data.DataLoader(dataset&#x3D;test_dataset,</span><br><span class="line">                                          batch_size&#x3D;batch_size,</span><br><span class="line">                                          shuffle&#x3D;False)</span><br></pre></td></tr></table></figure>
 
-<h2 id="Train-evaluation-and-test"><a href="#Train-evaluation-and-test" class="headerlink" title="Train, evaluation and test"></a>Train, evaluation and test</h2><p>Now, we define a network with very simple architechture (input-hidden-output) to fit the data:</p>
+<h2 id="Train-validation-and-train"><a href="#Train-validation-and-train" class="headerlink" title="Train, validation and train"></a>Train, validation and train</h2><p>Now, we define a network with very simple architechture (input-hidden-output) to fit the data:<br>In PyTorch module, you need to define all the layers you want to use in the <strong>_init_</strong> session and call these layers in <strong>foward</strong> session to proceed your data.<br>It might be hard to understand at the beggining, but you will realize it is a very smart design after doing more projects.</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">class Net(nn.Module):</span><br><span class="line">    def __init__(self, input_size, hidden_size):</span><br><span class="line">        super(Net, self).__init__()</span><br><span class="line">        self.fc1 &#x3D; nn.Linear(input_size, hidden_size) </span><br><span class="line">        self.relu &#x3D; nn.ReLU()</span><br><span class="line">        self.Dropout &#x3D; nn.Dropout(0.2)</span><br><span class="line">        self.fc2 &#x3D; nn.Linear(hidden_size, 2)  </span><br><span class="line">    </span><br><span class="line">    def forward(self, x):</span><br><span class="line">        out &#x3D; self.fc1(x)</span><br><span class="line">        out &#x3D; self.relu(out)</span><br><span class="line">        out &#x3D; self.Dropout(out)</span><br><span class="line">        out &#x3D; self.fc2(out)</span><br><span class="line">        return out</span><br><span class="line">    </span><br><span class="line">input_size &#x3D; X_train.shape[-1]</span><br><span class="line">hidden_size &#x3D; 512</span><br><span class="line">model &#x3D; Net(input_size, hidden_size)</span><br><span class="line">model &#x3D; model.to(device)</span><br></pre></td></tr></table></figure>
 
 <p>Define two functions that used to train and evaluate/test the model:</p>
@@ -234,7 +250,7 @@
 <li>Or even you can try other network such as graph neural network (GNN), however I found Morgan Fingerprints does not work worst then GNN when predicting  biochemistry property (stongly based on functional group).</li>
 </ol>
 <h2 id="Test-your-own-data"><a href="#Test-your-own-data" class="headerlink" title="Test your own data"></a>Test your own data</h2><p>If you find your network accurate and want to test on your own data, here is the function you can use.<br>In this case I predict the activity of phenol and the model suggest that it is not active toward the CYP2C19 enzyme.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">def predict_smiles(smiles, model, device):</span><br><span class="line">    fp &#x3D;smiles2fp(smiles).reshape(1,-1)</span><br><span class="line">    fp_tensor &#x3D; torch.tensor(fp, device&#x3D;device).float()</span><br><span class="line">    prediction &#x3D; nn.Softmax(1)(model(fp_tensor))</span><br><span class="line">    return prediction.data.cpu().numpy()[0][1]</span><br><span class="line"></span><br><span class="line">target_smiles &#x3D; &#39;Oc1ccccc1&#39; # Phenol</span><br><span class="line">predicted_activity &#x3D;  predict_smiles(target_smiles, model, device)</span><br><span class="line">print (predicted_activity) # 0.3101124</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">def predict_activity(smiles, model, device):</span><br><span class="line">    fp &#x3D;smiles2fp(smiles).reshape(1,-1)</span><br><span class="line">    fp_tensor &#x3D; torch.tensor(fp, device&#x3D;device).float()</span><br><span class="line">    prediction &#x3D; nn.Softmax(1)(model(fp_tensor))</span><br><span class="line">    return prediction.data.cpu().numpy()[0][1]</span><br><span class="line"></span><br><span class="line">target_smiles &#x3D; &#39;Oc1ccccc1&#39; # Phenol</span><br><span class="line">predicted_activity &#x3D;  predict_activity(target_smiles, model, device)</span><br><span class="line">print (predicted_activity) # 0.3101124</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -253,7 +269,10 @@
     <a href="/2021/04/09/rdkit/" rel="prev" title="RDKit - the python package for in-silico molecule programming">
       <i class="fa fa-chevron-left"></i> RDKit - the python package for in-silico molecule programming
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2021/05/02/GNN/" rel="next" title="Graph Neural Network (GNN) for chemistry">
+      Graph Neural Network (GNN) for chemistry <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -313,7 +332,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Install-PyTorch"><span class="nav-number">1.</span> <span class="nav-text">Install PyTorch</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Import-python-packages-and-load-data"><span class="nav-number">2.</span> <span class="nav-text">Import python packages and load data</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Train-evaluation-and-test"><span class="nav-number">3.</span> <span class="nav-text">Train, evaluation and test</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Imppove-the-model"><span class="nav-number">4.</span> <span class="nav-text">Imppove the model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Test-your-own-data"><span class="nav-number">5.</span> <span class="nav-text">Test your own data</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Machine-learning"><span class="nav-number">1.</span> <span class="nav-text">Machine learning</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Install-PyTorch"><span class="nav-number">2.</span> <span class="nav-text">Install PyTorch</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Load-data"><span class="nav-number">3.</span> <span class="nav-text">Load data</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Data-Preprocessing"><span class="nav-number">4.</span> <span class="nav-text">Data Preprocessing</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Train-validation-and-train"><span class="nav-number">5.</span> <span class="nav-text">Train, validation and train</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Imppove-the-model"><span class="nav-number">6.</span> <span class="nav-text">Imppove the model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Test-your-own-data"><span class="nav-number">7.</span> <span class="nav-text">Test your own data</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -326,7 +345,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-count">5</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
