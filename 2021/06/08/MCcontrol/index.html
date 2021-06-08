@@ -20,22 +20,20 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Commands to connect linux server to jupyter notebook on web browser for easier coding life Install Jupyter notebookInstall jupyter notebook on the server by simply run 1pip install jupyter Run in back">
+  <meta name="description" content="To be written">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Connect Linux server to Jupyter notebook">
-<meta property="og:url" content="http://example.com/2021/04/09/Connect-Jupyter/index.html">
+<meta property="og:title" content="Monte Carlo Control">
+<meta property="og:url" content="http://example.com/2021/06/08/MCcontrol/index.html">
 <meta property="og:site_name" content="Shuan Chen">
-<meta property="og:description" content="Commands to connect linux server to jupyter notebook on web browser for easier coding life Install Jupyter notebookInstall jupyter notebook on the server by simply run 1pip install jupyter Run in back">
+<meta property="og:description" content="To be written">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://i.imgur.com/Vf1IjUE.png">
-<meta property="article:published_time" content="2021-04-09T03:46:38.000Z">
-<meta property="article:modified_time" content="2021-05-01T05:53:04.992Z">
+<meta property="article:published_time" content="2021-06-08T13:55:40.000Z">
+<meta property="article:modified_time" content="2021-06-08T13:56:06.012Z">
 <meta property="article:author" content="Shuan Chen">
-<meta property="article:tag" content="Step-by-step-software-setup-tutorial">
+<meta property="article:tag" content="AI assisted retrosynthesis">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://i.imgur.com/Vf1IjUE.png">
 
-<link rel="canonical" href="http://example.com/2021/04/09/Connect-Jupyter/">
+<link rel="canonical" href="http://example.com/2021/06/08/MCcontrol/">
 
 
 <script id="page-configurations">
@@ -48,7 +46,7 @@
   };
 </script>
 
-  <title>Connect Linux server to Jupyter notebook | Shuan Chen</title>
+  <title>Monte Carlo Control | Shuan Chen</title>
   
 
 
@@ -159,7 +157,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/09/Connect-Jupyter/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/08/MCcontrol/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -172,7 +170,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Connect Linux server to Jupyter notebook
+          Monte Carlo Control
         </h1>
 
         <div class="post-meta">
@@ -181,16 +179,10 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
+              
 
-              <time title="Created: 2021-04-09 12:46:38" itemprop="dateCreated datePublished" datetime="2021-04-09T12:46:38+09:00">2021-04-09</time>
+              <time title="Created: 2021-06-08 22:55:40 / Modified: 22:56:06" itemprop="dateCreated datePublished" datetime="2021-06-08T22:55:40+09:00">2021-06-08</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-05-01 14:53:04" itemprop="dateModified" datetime="2021-05-01T14:53:04+09:00">2021-05-01</time>
-              </span>
 
           
             <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
@@ -210,41 +202,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>Commands to connect linux server to jupyter notebook on web browser for easier coding life</p>
-<h2 id="Install-Jupyter-notebook"><a href="#Install-Jupyter-notebook" class="headerlink" title="Install Jupyter notebook"></a>Install Jupyter notebook</h2><p>Install jupyter notebook on the server by simply run</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install jupyter</span><br></pre></td></tr></table></figure>
-<h2 id="Run-in-background-session"><a href="#Run-in-background-session" class="headerlink" title="Run in background session"></a>Run in background session</h2><p>If you want to run it as a background session, run</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">screen -S jupyter-on-fly</span><br></pre></td></tr></table></figure>
-<p>and press Ctrl+a+d to detach</p>
-<h2 id="Password-setting-and-conncetion"><a href="#Password-setting-and-conncetion" class="headerlink" title="Password setting and conncetion"></a>Password setting and conncetion</h2><p>Set password</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">jupyter notebook --generate-config</span><br><span class="line">jupyter notebook password</span><br><span class="line">Enter password:  ****</span><br><span class="line">Verify password: ****</span><br></pre></td></tr></table></figure>
-<p>and you’re on the right path if it shows the following</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[NotebookPasswordApp] Wrote hashed password to &#x2F;Users&#x2F;you&#x2F;.jupyter&#x2F;jupyter_notebook_config.json</span><br></pre></td></tr></table></figure>
-
-<p>Connect server to notebook</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jupyter notebook --ip&#x3D;[server_ip_address] --port&#x3D;8888 --allow-root --no-browser</span><br></pre></td></tr></table></figure>
-
-<p>For example</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jupyter notebook --ip&#x3D;0.0.0.0 --port&#x3D;8888 --allow-root --no-browser</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="Connect-to-web-browser"><a href="#Connect-to-web-browser" class="headerlink" title="Connect to web browser"></a>Connect to web browser</h2><p>Use your webbrowser to connect </p>
-<p>http://[server_ip_address]:8888/</p>
-<p>and type the password you set at the previous step</p>
-<h2 id="Import-virtual-environment"><a href="#Import-virtual-environment" class="headerlink" title="Import virtual environment"></a>Import virtual environment</h2><p>If you wish to use any virtual environment in Jupyter notebook, first intall ipykernel</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install --user ipykernel</span><br><span class="line">python -m ipykernel install --user --name&#x3D;[your-env-name]</span><br></pre></td></tr></table></figure>
-<p>It should print this if you do it correctly</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Installed kernelspec [your-env-name] in ~&#x2F;jupyter&#x2F;kernels&#x2F;[your-env-name]</span><br></pre></td></tr></table></figure>
-
-<p>You will be able to see something like this (for me I have virtual environment called “rdenv” for rdkit)</p>
-<p><img src="https://i.imgur.com/Vf1IjUE.png"></p>
-<p>If you want to uninstall, just simply write</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install --user ipykernel</span><br><span class="line">jupyter kernelspec uninstall [your-env-name]</span><br></pre></td></tr></table></figure>
-
-<h2 id="Optional-connect-the-server-from-other-IP-address"><a href="#Optional-connect-the-server-from-other-IP-address" class="headerlink" title="(Optional) connect the server from other IP address"></a>(Optional) connect the server from other IP address</h2><p>If you want to login this notebook with any IP, find jupyter_notebook_config.py at <code>~/.jupyter</code><br>and change the following line (around line 204):</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">c.NotebookApp.allow_origin &#x3D; &#39;*&#39; # line 48</span><br><span class="line">c.NotebookApp.ip &#x3D; &#39;0.0.0.0&#39;  # line 204</span><br></pre></td></tr></table></figure>
-
-
+        <h2 id="To-be-written"><a href="#To-be-written" class="headerlink" title="To be written"></a>To be written</h2>
     </div>
 
     
@@ -252,9 +210,6 @@
     
 
       <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/Step-by-step-software-setup-tutorial/" rel="tag"># Step-by-step-software-setup-tutorial</a>
-          </div>
 
         
 
@@ -262,13 +217,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/04/08/Build-Gitpage/" rel="prev" title="Build your own github page with Hexo">
-      <i class="fa fa-chevron-left"></i> Build your own github page with Hexo
+    <a href="/2021/06/08/MC/" rel="prev" title="Monte Carlo Method">
+      <i class="fa fa-chevron-left"></i> Monte Carlo Method
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/04/09/rdkit/" rel="next" title="RDKit - the python package for in-silico molecule programming">
-      RDKit - the python package for in-silico molecule programming <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -328,7 +280,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Install-Jupyter-notebook"><span class="nav-number">1.</span> <span class="nav-text">Install Jupyter notebook</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Run-in-background-session"><span class="nav-number">2.</span> <span class="nav-text">Run in background session</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Password-setting-and-conncetion"><span class="nav-number">3.</span> <span class="nav-text">Password setting and conncetion</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Connect-to-web-browser"><span class="nav-number">4.</span> <span class="nav-text">Connect to web browser</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Import-virtual-environment"><span class="nav-number">5.</span> <span class="nav-text">Import virtual environment</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Optional-connect-the-server-from-other-IP-address"><span class="nav-number">6.</span> <span class="nav-text">(Optional) connect the server from other IP address</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#To-be-written"><span class="nav-number">1.</span> <span class="nav-text">To be written</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -473,7 +425,7 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
       repo        : 'shuan4638.github.io',
       owner       : 'shuan4638',
       admin       : ['shuan4638'],
-      id          : 'dad0a644f998e294fdb2e8c666ed9790',
+      id          : 'e0b099990f710a141253adfaa47cdd62',
         language: 'en',
       distractionFreeMode: true
     });

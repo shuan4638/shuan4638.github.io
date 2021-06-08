@@ -28,13 +28,14 @@
 <meta property="og:description" content="Monte Carlo (MC)?Before I introduce MC, you might have heard lots of terms having Monte Carlo in it, such as:  Monte Carlo Method Monte Carlo Experiment Monte Carlo Simulation Monte Carlo Control Mont">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://i.imgur.com/LiN0JXM.png">
-<meta property="og:image" content="https://i.imgur.com/5uwZU34.png">
+<meta property="og:image" content="https://i.imgur.com/myaFtdK.png">
 <meta property="og:image" content="https://i.imgur.com/4zvoboK.png">
-<meta property="og:image" content="https://i.imgur.com/GqMiJWL.png">
-<meta property="og:image" content="https://i.imgur.com/o9BsnfZ.png">
-<meta property="og:image" content="https://i.imgur.com/vtMHavM.png">
+<meta property="og:image" content="https://i.imgur.com/nkhbFjt.png">
+<meta property="og:image" content="https://i.imgur.com/W8D9Dcy.png">
+<meta property="og:image" content="https://i.imgur.com/IaWDpbl.png">
+<meta property="og:image" content="https://i.imgur.com/iyS4eSG.png">
 <meta property="article:published_time" content="2021-06-08T12:41:19.000Z">
-<meta property="article:modified_time" content="2021-06-08T12:55:42.747Z">
+<meta property="article:modified_time" content="2021-06-08T13:54:56.644Z">
 <meta property="article:author" content="Shuan Chen">
 <meta property="article:tag" content="AI assisted retrosynthesis">
 <meta name="twitter:card" content="summary">
@@ -188,7 +189,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2021-06-08 21:41:19 / Modified: 21:55:42" itemprop="dateCreated datePublished" datetime="2021-06-08T21:41:19+09:00">2021-06-08</time>
+              <time title="Created: 2021-06-08 21:41:19 / Modified: 22:54:56" itemprop="dateCreated datePublished" datetime="2021-06-08T21:41:19+09:00">2021-06-08</time>
             </span>
 
           
@@ -219,53 +220,54 @@
 <li>Monte Carlo Algorithm</li>
 </ol>
 <p>Although these words look similar, <strong>only the first three terms refer to the same thing</strong>, which efficiently generate an ensemble (numerical results).</p>
-<p>Monte Carlo Control and Monte Carlo Tree Search are the methods often used for Reinforcement learning (a.k.a. optimization, we will talk about that in next article), and the Monte Carlo Algorithm is a totally different thing – we will not talk about it here.</p>
+<p>Monte Carlo Control and Monte Carlo Tree Search are the methods often used for Reinforcement learning (an optimization method, we will talk about that in next article), and the Monte Carlo Algorithm is a totally different thing – we will not talk about it here.</p>
 <h2 id="Monte-Carlo-Method"><a href="#Monte-Carlo-Method" class="headerlink" title="Monte Carlo Method"></a>Monte Carlo Method</h2><p>The goal of MC method is to <strong>approximate a certain value</strong> by randomly sampling from a given system.</p>
 <h3 id="Application-and-key-concept"><a href="#Application-and-key-concept" class="headerlink" title="Application and key concept"></a>Application and key concept</h3><p>MC method can be used in various kind of problems, including <sub>\pi</sub> <strong>approximation</strong> in Mathematics, ising model energy <strong>approximation</strong> in Statistical Thermodynamics or any probability distribution <strong>approximation</strong>. The key concept of Monte Carlo Method is fairly easy:</p>
 <blockquote>
 <p><em>Monte Carlo methods, or Monte Carlo experiments, are a broad class of computational algorithms that rely on <strong>repeated random sampling to obtain numerical results</strong>. - Wikipedia</em></p>
 </blockquote>
-<p>For a given system, you randomly sample a value for certain amount of times (let’s say 10K times) from the system. By simply taking the average of obtained results, the expected value of the target can be approximate by taking the mean of the obtained results.</p>
+<p>For a given system, you randomly sample a value for certain amount of times (let’s say 10K times) from the system. By simply taking the average of obtained results, the expected value of the target can be approximated by taking the mean of the obtained results.</p>
 <p>Let’s take some hand-on python examples to better understand how it works.</p>
 <h2 id="Example-1-Single-Armed-Bandit"><a href="#Example-1-Single-Armed-Bandit" class="headerlink" title="Example 1: Single Armed Bandit"></a>Example 1: Single Armed Bandit</h2><p><img src="https://i.imgur.com/LiN0JXM.png"></p>
 <p>Let’s suppose you are playing an armed bandit machine – which you should pay money to win the money with a certain probability.<br><strong>To make sure you can win the money, you want to know the expected value of earning money.</strong></p>
 <p>First, we set up an armed bandit machine with </p>
 <ul>
-<li><em>cost</em> = 200 (pay 200 each time you play)</li>
-<li><em>p</em> = 0.1 (there is 10% probability that you win the game)</li>
-<li><em>reward</em> = 1000 (you get 1000 if you win the game)</li>
+<li><em>cost = 500</em> (pay 500 each time you play)</li>
+<li><em>p = 0.2</em> (there is 20% probability that you win the game)</li>
+<li><em>reward = 1000</em> (you get 1000 if you win the game)</li>
 </ul>
-<p>Thus, the expected value <em>v</em> of this machine is:<br></p>
-<p><em>v</em> = <em>p</em> x <em>reward</em> - <em>cost</em> = -100<br></p>
+<p>Thus, the expected value of this machine is:</p>
+<p><em>v</em> = <em>p</em> x <em>reward</em> - <em>cost</em> = -300</p>
 <p>However, we don’t know the probability of winning the game, so we should do sampling to find out the <em>p</em> (or <em>v</em>).</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">from matplotlib import pyplot as plt</span><br><span class="line"></span><br><span class="line">class ArmedBandit:</span><br><span class="line">    def __init__(self, p &#x3D; 0.1, cost &#x3D; 200, reward &#x3D; 1000):</span><br><span class="line">        self.p &#x3D; p</span><br><span class="line">        self.cost &#x3D; cost</span><br><span class="line">        self.reward &#x3D; reward</span><br><span class="line">        self.value &#x3D; p*reward - cost</span><br><span class="line"></span><br><span class="line">    def pull(self):</span><br><span class="line">        if np.random.random() &lt;&#x3D; self.p:</span><br><span class="line">            reward &#x3D; self.reward</span><br><span class="line">        else:</span><br><span class="line">            reward &#x3D; 0</span><br><span class="line">        return reward - self.cost</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">from matplotlib import pyplot as plt</span><br><span class="line"></span><br><span class="line">class ArmedBandit:</span><br><span class="line">    def __init__(self, p &#x3D; 0.2, cost &#x3D; 500, reward &#x3D; 1000):</span><br><span class="line">        self.p &#x3D; p</span><br><span class="line">        self.cost &#x3D; cost</span><br><span class="line">        self.reward &#x3D; reward</span><br><span class="line">        self.value &#x3D; p*reward - cost</span><br><span class="line"></span><br><span class="line">    def pull(self):</span><br><span class="line">        if np.random.random() &lt;&#x3D; self.p:</span><br><span class="line">            reward &#x3D; self.reward</span><br><span class="line">        else:</span><br><span class="line">            reward &#x3D; 0</span><br><span class="line">        return reward - self.cost</span><br></pre></td></tr></table></figure>
 
-<p>Now, we do monte calro simulation, that is, sample (play) the armed bandit machine for 10K times, with starting money 100K. </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">Bandit &#x3D; ArmedBandit()</span><br><span class="line"></span><br><span class="line"># Monte Carlo Method</span><br><span class="line">trail_n &#x3D; 10000</span><br><span class="line">init_money &#x3D; 100000</span><br><span class="line">remain_moneys &#x3D; []</span><br><span class="line">remain_money &#x3D; init_money </span><br><span class="line">expected_values &#x3D; []</span><br><span class="line">total_earn &#x3D; 0</span><br><span class="line">for i, trail in enumerate(range(trail_n)):</span><br><span class="line">    i +&#x3D; 1</span><br><span class="line">    earn &#x3D; Bandit.pull()</span><br><span class="line">    remain_money +&#x3D; earn</span><br><span class="line">    remain_moneys.append(remain_money)</span><br><span class="line">    total_earn +&#x3D; earn</span><br><span class="line">    expected_value &#x3D; total_earn&#x2F;i</span><br><span class="line">    expected_values.append(expected_value)</span><br><span class="line">print (&#39;Remain money: %s&#39; % remain_money)</span><br><span class="line">print (&#39;Expected value of this bandit: %s&#39; % expected_value)</span><br><span class="line">print (&#39;Real value of this bandit: %s&#39; % Bandit.value)</span><br><span class="line"></span><br><span class="line">plt.plot(remain_moneys)</span><br><span class="line">plt.title(&#39;remaining money&#39;)</span><br><span class="line">plt.show()</span><br><span class="line"></span><br><span class="line">plt.plot(expected_values)</span><br><span class="line">plt.title(&#39;expected value of armed bandit&#39;)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p>Now, we do monte calro simulation, that is, sample (play) the armed bandit machine for 1K times, with starting money 100K. </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">Bandit &#x3D; ArmedBandit()</span><br><span class="line"></span><br><span class="line"># Monte Carlo Method</span><br><span class="line">trail_n &#x3D; 1000</span><br><span class="line">init_money &#x3D; 100000</span><br><span class="line">total_earn &#x3D; 0</span><br><span class="line"></span><br><span class="line">remain_moneys &#x3D; []</span><br><span class="line">expected_values &#x3D; []</span><br><span class="line"></span><br><span class="line">remain_money &#x3D; init_money </span><br><span class="line">for i, trail in enumerate(range(trail_n)):</span><br><span class="line">    i +&#x3D; 1</span><br><span class="line">    earn &#x3D; Bandit.pull()</span><br><span class="line">    remain_money +&#x3D; earn</span><br><span class="line">    remain_moneys.append(remain_money)</span><br><span class="line">    total_earn +&#x3D; earn</span><br><span class="line">    expected_value &#x3D; total_earn&#x2F;i</span><br><span class="line">    expected_values.append(expected_value)</span><br><span class="line">print (&#39;Remain money: %s&#39; % remain_money)</span><br><span class="line">print (&#39;Expected value of this bandit: %s&#39; % expected_value)</span><br><span class="line">print (&#39;Real value of this bandit: %s&#39; % Bandit.value)</span><br><span class="line"></span><br><span class="line">plt.plot(remain_moneys)</span><br><span class="line">plt.title(&#39;remaining money&#39;)</span><br><span class="line">plt.show()</span><br><span class="line"></span><br><span class="line">plt.plot(expected_values)</span><br><span class="line">plt.title(&#39;expected value of armed bandit&#39;)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://i.imgur.com/5uwZU34.png"></p>
-<p>We see that we can get a pretty good expected value after 10K times of playing. However, it took us 1 million to get this result.</p>
+<p><img src="https://i.imgur.com/myaFtdK.png"></p>
+<p>We see that we can get a pretty good expected value after 10K times of playing. However, it took us almost 300K to get this result.</p>
 <h2 id="Example-2-Multi-Armed-Bandits"><a href="#Example-2-Multi-Armed-Bandits" class="headerlink" title="Example 2: Multi-Armed Bandits"></a>Example 2: Multi-Armed Bandits</h2><p>In the previous game, you are playing an armed bandit with negative expected value – which you don’t want to play to lose money.<br><br><img src="https://i.imgur.com/4zvoboK.png"></p>
 <p>Now, you are playing an advanced version of game – <strong>multi-armed bandits</strong>. There are multiple (here I set 10) arms you can play and <strong>each arm has different probability of winning money</strong>.<br>Here, your strategy is to </p>
 <ol>
 <li><strong>Approximate the value of each arm at the first 10K trails</strong> (so you play each arms for 1K times) by Monte Carlo Method. </li>
-<li>After getting the expected value of each arm, <strong>you play the arm with the highest expected value for another 10,000 more times to win the most money.</strong><br> </li>
+<li>After getting the expected value of each arm, <strong>you play the arm with the highest expected value for another 10K more times to win the most money.</strong><br> </li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class MultiArmedBandit:</span><br><span class="line">    def __init__(self, k &#x3D; 10, cost &#x3D; 200, reward &#x3D; 1000):</span><br><span class="line">        probs &#x3D; [p&#x2F;2 for p in np.random.random(10)]</span><br><span class="line">        self.values &#x3D; [p*reward - cost for p in probs]</span><br><span class="line">        self.Bandits &#x3D; [ArmedBandit(p, cost, reward) for p in probs]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class MultiArmedBandit:</span><br><span class="line">    def __init__(self, k &#x3D; 10, cost &#x3D; 500, reward &#x3D; 1000):</span><br><span class="line">        probs &#x3D; [p for p in np.random.random(10)]</span><br><span class="line">        self.values &#x3D; [p*reward - cost for p in probs]</span><br><span class="line">        self.Bandits &#x3D; [ArmedBandit(p, cost, reward) for p in probs]</span><br></pre></td></tr></table></figure>
 
 
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">Bandits &#x3D; MultiArmedBandit()</span><br><span class="line"></span><br><span class="line"># Monte Carlo</span><br><span class="line">trail_n &#x3D; 10000</span><br><span class="line">init_money &#x3D; 100000</span><br><span class="line">k &#x3D; 10</span><br><span class="line">expect_values &#x3D; []</span><br><span class="line">remain_money &#x3D; init_money </span><br><span class="line">remain_moneys &#x3D; []</span><br><span class="line">for bandit in range(k):</span><br><span class="line">    this_earn &#x3D; 0</span><br><span class="line">    Bandit &#x3D; Bandits.Bandits[bandit]</span><br><span class="line">    for trail in range(int(trail_n&#x2F;k)):</span><br><span class="line">        earn &#x3D; Bandit.pull()</span><br><span class="line">        this_earn +&#x3D; earn</span><br><span class="line">        remain_money +&#x3D; earn</span><br><span class="line">        remain_moneys.append(remain_money)</span><br><span class="line">    expect_values.append(this_earn&#x2F;int(trail_n&#x2F;k))</span><br><span class="line"></span><br><span class="line">print (&#39;Remain money: %s&#39; % remain_money)</span><br><span class="line"></span><br><span class="line">plt.plot(remain_moneys)</span><br><span class="line">plt.title(&#39;remaining money&#39;)</span><br><span class="line">plt.show()</span><br><span class="line"></span><br><span class="line">plt.bar(range(10), expect_values)</span><br><span class="line">plt.title(&#39;expected value of each armed bandit&#39;)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://i.imgur.com/GqMiJWL.png"></p>
-<p>After 10K times of playing, we appoximate the expect value of each armed bandit, which is pretty close to the real expected value (good job!) and earned 813K during the process.<br>Now, we only play on the armed badit with highest expected value to ensure we can win the most money for 10K more times.</p>
+<p><img src="https://i.imgur.com/nkhbFjt.png"></p>
+<p>Where the real value of each bandit is:<br><img src="https://i.imgur.com/W8D9Dcy.png"></p>
+<p>After 10K times of playing, we appoximate the expect value of each armed bandit, which is pretty close to the real expected value (good job!) but it took more than 400K during the process.<br>Now, we only play on the armed badit with highest expected value (bandit 10) to ensure we can win the most money for 10K more times.</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">trail_n &#x3D; 10000</span><br><span class="line"></span><br><span class="line">Bandit &#x3D; Bandits.Bandits[np.argmax(expect_values)]</span><br><span class="line">for trail in range(trail_n):</span><br><span class="line">    earn &#x3D; Bandit.pull()</span><br><span class="line">    remain_money +&#x3D; earn</span><br><span class="line">    remain_moneys.append(remain_money)</span><br><span class="line"></span><br><span class="line">print (&#39;Remain money: %s&#39; % remain_money)</span><br><span class="line"></span><br><span class="line">plt.plot(remain_moneys)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://i.imgur.com/o9BsnfZ.png"></p>
-<p>We now earned another 3M in 10K plays by knowing which bandit can give the best rewards!</p>
-<p>With this approach, we <strong>earned 3.8M in this 20K plays</strong>.</p>
-<h2 id="Monte-Carlo-Control"><a href="#Monte-Carlo-Control" class="headerlink" title="Monte Carlo Control"></a>Monte Carlo Control</h2><p>However, there is a way to efficiently sample the valuable armed bandit during playing the bandits <strong>without knowing the expectation value of each bandit</strong>. With this method, we <strong>earned nearly 6M after playing 20K times</strong> without lossing money during the process:</p>
-<p><img src="https://i.imgur.com/vtMHavM.png"></p>
-<p>This method is called <strong>Monte Carlo Control</strong> – an advanced method for optimization which we will talk about in the next article.</p>
+<p><img src="https://i.imgur.com/IaWDpbl.png"></p>
+<p>We now earned  around 3M in 10K plays by knowing which bandit can give the best rewards!</p>
+<p>With this approach, <strong>we earned 3.1M in this 20K plays</strong>! Congrats!</p>
+<h2 id="Monte-Carlo-Control"><a href="#Monte-Carlo-Control" class="headerlink" title="Monte Carlo Control"></a>Monte Carlo Control</h2><p>However, there is a way to efficiently sample the valuable armed bandit during playing the bandits <strong>without knowing the expectation value of each bandit</strong>. With this method, <strong>we earned nearly 4M after playing 20K times without lossing any money during the process</strong>:</p>
+<p><img src="https://i.imgur.com/iyS4eSG.png"></p>
+<p>This method is called <strong>Monte Carlo Control</strong> (with greedy policy) – an advanced method for optimization which we will talk about in the next article.</p>
 
     </div>
 
@@ -284,7 +286,10 @@
     <a href="/2021/05/02/GNN/" rel="prev" title="Graph Neural Network (GNN) for chemistry">
       <i class="fa fa-chevron-left"></i> Graph Neural Network (GNN) for chemistry
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2021/06/08/MCcontrol/" rel="next" title="Monte Carlo Control">
+      Monte Carlo Control <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -357,7 +362,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-count">7</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
