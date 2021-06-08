@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Monte Carlo MethodMonte Carlo (MC)?Before I introduce MC, you might have heard lots of terms having Monte Carlo in it, such as:  Monte Carlo Method Monte Carlo Experiment Monte Carlo Simulation Monte">
+  <meta name="description" content="Monte Carlo (MC)?Before I introduce MC, you might have heard lots of terms having Monte Carlo in it, such as:  Monte Carlo Method Monte Carlo Experiment Monte Carlo Simulation Monte Carlo Control Mont">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MC">
+<meta property="og:title" content="Monte Carlo Method">
 <meta property="og:url" content="http://example.com/2021/06/08/MC/index.html">
 <meta property="og:site_name" content="Shuan Chen">
-<meta property="og:description" content="Monte Carlo MethodMonte Carlo (MC)?Before I introduce MC, you might have heard lots of terms having Monte Carlo in it, such as:  Monte Carlo Method Monte Carlo Experiment Monte Carlo Simulation Monte">
+<meta property="og:description" content="Monte Carlo (MC)?Before I introduce MC, you might have heard lots of terms having Monte Carlo in it, such as:  Monte Carlo Method Monte Carlo Experiment Monte Carlo Simulation Monte Carlo Control Mont">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://i.imgur.com/LiN0JXM.png">
 <meta property="og:image" content="https://i.imgur.com/5uwZU34.png">
@@ -34,7 +34,7 @@
 <meta property="og:image" content="https://i.imgur.com/o9BsnfZ.png">
 <meta property="og:image" content="https://i.imgur.com/vtMHavM.png">
 <meta property="article:published_time" content="2021-06-08T12:41:19.000Z">
-<meta property="article:modified_time" content="2021-06-08T12:44:38.132Z">
+<meta property="article:modified_time" content="2021-06-08T12:46:12.973Z">
 <meta property="article:author" content="Shuan Chen">
 <meta property="article:tag" content="AI assisted retrosynthesis">
 <meta name="twitter:card" content="summary">
@@ -53,7 +53,7 @@
   };
 </script>
 
-  <title>MC | Shuan Chen</title>
+  <title>Monte Carlo Method | Shuan Chen</title>
   
 
 
@@ -177,7 +177,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          MC
+          Monte Carlo Method
         </h1>
 
         <div class="post-meta">
@@ -188,7 +188,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2021-06-08 21:41:19 / Modified: 21:44:38" itemprop="dateCreated datePublished" datetime="2021-06-08T21:41:19+09:00">2021-06-08</time>
+              <time title="Created: 2021-06-08 21:41:19 / Modified: 21:46:12" itemprop="dateCreated datePublished" datetime="2021-06-08T21:41:19+09:00">2021-06-08</time>
             </span>
 
           
@@ -209,7 +209,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="Monte-Carlo-Method"><a href="#Monte-Carlo-Method" class="headerlink" title="Monte Carlo Method"></a>Monte Carlo Method</h1><h2 id="Monte-Carlo-MC"><a href="#Monte-Carlo-MC" class="headerlink" title="Monte Carlo (MC)?"></a>Monte Carlo (MC)?</h2><p>Before I introduce MC, you might have heard lots of terms having <em>Monte Carlo</em> in it, such as:</p>
+        <h2 id="Monte-Carlo-MC"><a href="#Monte-Carlo-MC" class="headerlink" title="Monte Carlo (MC)?"></a>Monte Carlo (MC)?</h2><p>Before I introduce MC, you might have heard lots of terms having <em>Monte Carlo</em> in it, such as:</p>
 <ol>
 <li>Monte Carlo Method</li>
 <li>Monte Carlo Experiment</li>
@@ -220,7 +220,7 @@
 </ol>
 <p>Although these words look similar, <strong>only the first three terms refer to the same thing</strong>, which efficiently generate an ensemble (numerical results).</p>
 <p>Monte Carlo Control and Monte Carlo Tree Search are the methods often used for Reinforcement learning (a.k.a. optimization, we will talk about that in next article), and the Monte Carlo Algorithm is a totally different thing – we will not talk about it here.</p>
-<h2 id="Monte-Carlo-Method-1"><a href="#Monte-Carlo-Method-1" class="headerlink" title="Monte Carlo Method"></a>Monte Carlo Method</h2><p>The goal of MC method is to <strong>approximate a certain value</strong> by randomly sampling from a given system.</p>
+<h2 id="Monte-Carlo-Method"><a href="#Monte-Carlo-Method" class="headerlink" title="Monte Carlo Method"></a>Monte Carlo Method</h2><p>The goal of MC method is to <strong>approximate a certain value</strong> by randomly sampling from a given system.</p>
 <h3 id="Application-and-key-concept"><a href="#Application-and-key-concept" class="headerlink" title="Application and key concept"></a>Application and key concept</h3><p>MC method can be used in various kind of problems, including <sub>\pi</sub> <strong>approximation</strong> in Mathematics, ising model energy <strong>approximation</strong> in Statistical Thermodynamics or any probability distribution <strong>approximation</strong>. The key concept of Monte Carlo Method is fairly easy:</p>
 <blockquote>
 <p><em>Monte Carlo methods, or Monte Carlo experiments, are a broad class of computational algorithms that rely on <strong>repeated random sampling to obtain numerical results</strong>. - Wikipedia</em></p>
@@ -344,7 +344,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Monte-Carlo-Method"><span class="nav-number">1.</span> <span class="nav-text">Monte Carlo Method</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Monte-Carlo-MC"><span class="nav-number">1.1.</span> <span class="nav-text">Monte Carlo (MC)?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Monte-Carlo-Method-1"><span class="nav-number">1.2.</span> <span class="nav-text">Monte Carlo Method</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Application-and-key-concept"><span class="nav-number">1.2.1.</span> <span class="nav-text">Application and key concept</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Example-1-Single-Armed-Bandit"><span class="nav-number">1.3.</span> <span class="nav-text">Example 1: Single Armed Bandit</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Example-2-Multi-Armed-Bandits"><span class="nav-number">1.4.</span> <span class="nav-text">Example 2: Multi-Armed Bandits</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Monte-Carlo-Control"><span class="nav-number">1.5.</span> <span class="nav-text">Monte Carlo Control</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Monte-Carlo-MC"><span class="nav-number">1.</span> <span class="nav-text">Monte Carlo (MC)?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Monte-Carlo-Method"><span class="nav-number">2.</span> <span class="nav-text">Monte Carlo Method</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Application-and-key-concept"><span class="nav-number">2.1.</span> <span class="nav-text">Application and key concept</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Example-1-Single-Armed-Bandit"><span class="nav-number">3.</span> <span class="nav-text">Example 1: Single Armed Bandit</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Example-2-Multi-Armed-Bandits"><span class="nav-number">4.</span> <span class="nav-text">Example 2: Multi-Armed Bandits</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Monte-Carlo-Control"><span class="nav-number">5.</span> <span class="nav-text">Monte Carlo Control</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
