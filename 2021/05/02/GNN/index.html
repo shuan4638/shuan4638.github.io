@@ -29,7 +29,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://i.imgur.com/jb4ci6U.jpg">
 <meta property="article:published_time" content="2021-05-02T05:45:12.000Z">
-<meta property="article:modified_time" content="2021-05-02T08:12:18.291Z">
+<meta property="article:modified_time" content="2021-05-02T08:21:54.549Z">
 <meta property="article:author" content="Shuan Chen">
 <meta property="article:tag" content="AI assisted retrosynthesis">
 <meta name="twitter:card" content="summary">
@@ -183,7 +183,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2021-05-02 14:45:12 / Modified: 17:12:18" itemprop="dateCreated datePublished" datetime="2021-05-02T14:45:12+09:00">2021-05-02</time>
+              <time title="Created: 2021-05-02 14:45:12 / Modified: 17:21:54" itemprop="dateCreated datePublished" datetime="2021-05-02T14:45:12+09:00">2021-05-02</time>
             </span>
 
           
@@ -214,7 +214,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">import torch</span><br><span class="line">import sklearn</span><br><span class="line">import dgl</span><br><span class="line">from dgllife.utils import smiles_to_bigraph, WeaveAtomFeaturizer, CanonicalBondFeaturizer</span><br><span class="line"></span><br><span class="line">def GraphFromSmiles(smiles):</span><br><span class="line">    node_featurizer &#x3D; WeaveAtomFeaturizer()</span><br><span class="line">    edge_featurizer &#x3D; CanonicalBondFeaturizer()</span><br><span class="line">    return smiles_to_bigraph(smiles, node_featurizer &#x3D; node_featurizer, edge_featurizer &#x3D; edge_featurizer)</span><br><span class="line"></span><br><span class="line">smiles &#x3D; &#39;O&#x3D;C1NC(&#x3D;O)CCC1N3C(&#x3D;O)c2cccc(c2C3)N&#39; # Lenalidomide</span><br><span class="line">graph &#x3D; GraphFromSmiles(smiles)</span><br></pre></td></tr></table></figure>
 <p>If you print the variable graph, it should show</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Graph(num_nodes&#x3D;19, num_edges&#x3D;42,</span><br><span class="line">      ndata_schemes&#x3D;&#123;&#39;h&#39;: Scheme(shape&#x3D;(27,), dtype&#x3D;torch.float32)&#125;</span><br><span class="line">      edata_schemes&#x3D;&#123;&#39;e&#39;: Scheme(shape&#x3D;(12,), dtype&#x3D;torch.float32)&#125;)</span><br></pre></td></tr></table></figure>
-<p>Which means you have 19 atoms and 42 bonds in the molecule, where each atom has a feature vector with 27 features and each bond has a feature vector with 13 features.</p>
+<p>Which means you have 19 atoms and 42 bonds in the molecule, where each atom has a feature vector with 27 features and each bond has a feature vector with 12 features.</p>
 <h2 id="Node-Feature-Embedding-and-Updating"><a href="#Node-Feature-Embedding-and-Updating" class="headerlink" title="Node Feature Embedding and Updating"></a>Node Feature Embedding and Updating</h2><p>Here is the core part of GNN, each atoms are embedded by linear layer and update by their environment (atoms and bonds) by GNN algorithm. There are many types of GNNs depending on differnt neural network used to update the atom:<br>If you use <strong>convolution</strong> algorithm, it is called <strong>Graph Convolutional Neural Network (GCN)</strong>.<br>If you use <strong>attention</strong> mechanism, it is called <strong>Graph Attention Neural Network (GAT)</strong>.<br>If you use <strong>convolution and recurrent</strong> algorithm, it is called <strong>Message Passing Neural Network (MPNN)</strong>.</p>
 <p>I will do GCN in this tutorial, however you can change to other network as you wish.<br>Because graph convoluion is already defined in dgl module, we only need to import and connect the GCN layers.</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">import torch.nn as nn</span><br><span class="line">import torch.nn.functional as F</span><br><span class="line"></span><br><span class="line">from dgl.nn.pytorch import GraphConv</span><br><span class="line"></span><br><span class="line">class GCN(nn.Module):</span><br><span class="line">    def __init__(self, in_feats, hidden_feats):</span><br><span class="line">        super(GCN, self).__init__()</span><br><span class="line">        </span><br><span class="line">        self.gnn_layers &#x3D; nn.ModuleList()</span><br><span class="line">        for i in range(len(hidden_feats)):</span><br><span class="line">            self.gnn_layers.append(GraphConv(in_feats, hidden_feats[i]))</span><br><span class="line">            in_feats &#x3D; hidden_feats[i]</span><br><span class="line"></span><br><span class="line">    def forward(self, g, feats):</span><br><span class="line">        for gnn in self.gnn_layers:</span><br><span class="line">            feats &#x3D; gnn(g, feats)</span><br><span class="line">        return feats</span><br></pre></td></tr></table></figure>
@@ -244,10 +244,13 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/05/01/PyTorch/" rel="prev" title="Machine Learning with PyTorch">
-      <i class="fa fa-chevron-left"></i> Machine Learning with PyTorch
+    <a href="/2021/05/01/PyTorch/" rel="prev" title="Machine Learning with PyTorch for chemistry">
+      <i class="fa fa-chevron-left"></i> Machine Learning with PyTorch for chemistry
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2021/06/08/MC/" rel="next" title="MC">
+      MC <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -320,7 +323,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
