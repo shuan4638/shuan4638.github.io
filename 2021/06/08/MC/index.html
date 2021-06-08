@@ -34,7 +34,7 @@
 <meta property="og:image" content="https://i.imgur.com/o9BsnfZ.png">
 <meta property="og:image" content="https://i.imgur.com/vtMHavM.png">
 <meta property="article:published_time" content="2021-06-08T12:41:19.000Z">
-<meta property="article:modified_time" content="2021-06-08T12:46:12.973Z">
+<meta property="article:modified_time" content="2021-06-08T12:50:00.215Z">
 <meta property="article:author" content="Shuan Chen">
 <meta property="article:tag" content="AI assisted retrosynthesis">
 <meta name="twitter:card" content="summary">
@@ -188,7 +188,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2021-06-08 21:41:19 / Modified: 21:46:12" itemprop="dateCreated datePublished" datetime="2021-06-08T21:41:19+09:00">2021-06-08</time>
+              <time title="Created: 2021-06-08 21:41:19 / Modified: 21:50:00" itemprop="dateCreated datePublished" datetime="2021-06-08T21:41:19+09:00">2021-06-08</time>
             </span>
 
           
@@ -231,13 +231,13 @@
 <p>Let’s suppose you are playing an armed bandit machine – which you should pay money to win the money with a certain probability.<br><strong>To make sure you can win the money, you want to know the expected value of earning money.</strong></p>
 <p>First, we set up an armed bandit machine with </p>
 <ul>
-<li><sub>cost = 200</sub> (pay 200 each time you play)</li>
-<li><sub>p = 0.1</sub> (there is 10% probability that you win the game)</li>
-<li><sub>reward = 1000</sub> (you get 1000 if you win the game)</li>
+<li>cost = 200 (pay 200 each time you play)</li>
+<li>p = 0.1 (there is 10% probability that you win the game)</li>
+<li>reward = 1000 (you get 1000 if you win the game)</li>
 </ul>
 <p>Thus, the expected value of this machine is:</p>
-<p><sub></sub><v> = p*reward-cost = -100<sub></sub></v></p>
-<p>However, we don’t know the probability of winning the game, so we should do sampling to find out the <sub>p</sub> (or <sub><v></v></sub>).</p>
+<p><v> = p*reward-cost = -100</v></p>
+<p>However, we don’t know the probability of winning the game, so we should do sampling to find out the p (or <v>).</v></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">from matplotlib import pyplot as plt</span><br><span class="line"></span><br><span class="line">class ArmedBandit:</span><br><span class="line">    def __init__(self, p &#x3D; 0.1, cost &#x3D; 200, reward &#x3D; 1000):</span><br><span class="line">        self.p &#x3D; p</span><br><span class="line">        self.cost &#x3D; cost</span><br><span class="line">        self.reward &#x3D; reward</span><br><span class="line">        self.value &#x3D; p*reward - cost</span><br><span class="line"></span><br><span class="line">    def pull(self):</span><br><span class="line">        if np.random.random() &lt;&#x3D; self.p:</span><br><span class="line">            reward &#x3D; self.reward</span><br><span class="line">        else:</span><br><span class="line">            reward &#x3D; 0</span><br><span class="line">        return reward - self.cost</span><br></pre></td></tr></table></figure>
 
 <p>Now, we do monte calro simulation, that is, sample (play) the armed bandit machine for 10K times, with starting money 100K. </p>
