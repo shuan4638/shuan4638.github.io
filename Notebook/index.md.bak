@@ -17,16 +17,17 @@ comments: false
 [Multu-processing](https://shuan4638.github.io/2022/01/28/multiprocessing)
 [Regular Expression]
 
-## Monte Carlo (MC) introduction
+## Machine learning algorithm
+[Graph neural network (GNN)](https://shuan4638.github.io/2021/05/02/GNN)
+[Attention mechanism]
+
+## Monte Carlo (MC)
 [Monte Carlo Method](https://shuan4638.github.io/2021/06/08/MC)
 [Monte Carlo Control](https://shuan4638.github.io/2021/06/08/MCcontrol)
 [Monte Carlo Tree Search](https://shuan4638.github.io/2021/06/08/MCTS)
 
-## Machine learning algorithm
-[Graph neural network (GNN)](https://shuan4638.github.io/2021/05/02/GNN)
-Attention mechanism
-
-## Acedemic Paper - Reaction prediction
-GraphRetro
-LocalRetro
+## Research Paper
+[DeepDDI]
+[LocalRetro]
+[LocalTransform]
 
