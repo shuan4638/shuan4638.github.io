@@ -13,13 +13,13 @@ comments: false
 [Pytorch](https://shuan4638.github.io/2021/05/01/PyTorch)
 
 ## Python tips
-[Defaultdict]
+Some useful packages
 [Multu-processing](https://shuan4638.github.io/2022/01/28/multiprocessing)
-[Regular Expression]
+Regular Expression
 
 ## Machine learning algorithm
 [Graph neural network (GNN)](https://shuan4638.github.io/2021/05/02/GNN)
-[Attention mechanism]
+Attention mechanism
 
 ## Monte Carlo (MC)
 [Monte Carlo Method](https://shuan4638.github.io/2021/06/08/MC)
@@ -27,7 +27,8 @@ comments: false
 [Monte Carlo Tree Search](https://shuan4638.github.io/2021/06/08/MCTS)
 
 ## Research Paper
-[DeepDDI]
-[LocalRetro]
-[LocalTransform]
+DeepDDI
+LocalRetro
+LocalRetro+
+LocalTransform
 
