@@ -28,7 +28,7 @@
 <meta property="og:description" content="The build-in python package makes the program run xN times faster with multiple CPUs PoolThe class multiprocessing.Pool is an operator of conducting multi-process jobsThe given task are splitted in th">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-01-28T07:08:51.000Z">
-<meta property="article:modified_time" content="2022-01-28T08:03:55.520Z">
+<meta property="article:modified_time" content="2022-01-28T09:18:40.807Z">
 <meta property="article:author" content="Shuan Chen">
 <meta property="article:tag" content="Python Tips">
 <meta name="twitter:card" content="summary">
@@ -181,7 +181,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2022-01-28 16:08:51 / Modified: 17:03:55" itemprop="dateCreated datePublished" datetime="2022-01-28T16:08:51+09:00">2022-01-28</time>
+              <time title="Created: 2022-01-28 16:08:51 / Modified: 18:18:40" itemprop="dateCreated datePublished" datetime="2022-01-28T16:08:51+09:00">2022-01-28</time>
             </span>
 
           
@@ -203,13 +203,13 @@
 
       
         <p>The build-in python package makes the program run xN times faster with multiple CPUs</p>
-<h2 id="Pool"><a href="#Pool" class="headerlink" title="Pool"></a>Pool</h2><p>The class <code>multiprocessing.Pool</code> is an operator of conducting multi-process jobs<br>The given task are splitted in the <code>Pool</code> object and multi-processed<br>The jobs are splitted into <em><strong>n</strong></em> process in parallel and gethered back after the jobs are done by calling <code>Pool(proccesses = n)</code></p>
-<h2 id="map-function"><a href="#map-function" class="headerlink" title="map function"></a>map function</h2><p>With a little modified from official documentation, the example is given</p>
+<h1 id="Pool"><a href="#Pool" class="headerlink" title="Pool"></a>Pool</h1><p>The class <code>multiprocessing.Pool</code> is an operator of conducting multi-process jobs<br>The given task are splitted in the <code>Pool</code> object and multi-processed<br>The jobs are splitted into <em><strong>n</strong></em> process in parallel and gethered back after the jobs are done by calling <code>Pool(proccesses = n)</code></p>
+<h1 id="map-function"><a href="#map-function" class="headerlink" title="map function"></a>map function</h1><p>With a little modified from official documentation, the example is given</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">import time</span><br><span class="line">from multiprocessing import Pool</span><br><span class="line"></span><br><span class="line">def task(x):</span><br><span class="line">    time.sleep(1)</span><br><span class="line">    return x</span><br><span class="line"></span><br><span class="line">start_time &#x3D; time.time()</span><br><span class="line">for x in range(10):</span><br><span class="line">    square(x)</span><br><span class="line">print(&#39;Single-process takes &#123;&#125; seconds&#39;.format(time.time() - start_time))</span><br><span class="line"></span><br><span class="line">start_time &#x3D; time.time()</span><br><span class="line">with Pool(processes &#x3D; 8) as pool:</span><br><span class="line">    pol.map(square, range(10))</span><br><span class="line">print(&#39;Multi-process takes &#123;&#125; seconds&#39;.format(time.time() - start_time))</span><br></pre></td></tr></table></figure>
 <p>and it gives</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Single-process takes 10.010777711868286 seconds</span><br><span class="line">Multi-process takes 2.13849139213562 seconds</span><br></pre></td></tr></table></figure>
 
-<h2 id="Get-the-return-value-from-function"><a href="#Get-the-return-value-from-function" class="headerlink" title="Get the return value from function"></a>Get the return value from function</h2><p>You can get the returned value from the Pool.map function</p>
+<h1 id="Get-the-return-value-from-function"><a href="#Get-the-return-value-from-function" class="headerlink" title="Get the return value from function"></a>Get the return value from function</h1><p>You can get the returned value from the Pool.map function</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">start_time &#x3D; time.time()</span><br><span class="line">with Pool(processes &#x3D; 8) as pool:</span><br><span class="line">    results &#x3D; pool.map(square, range(64))</span><br><span class="line">print (results)</span><br><span class="line">print(&#39;Pool.map takes %s seconds&#39; %(time.time() - start_time))</span><br></pre></td></tr></table></figure>
 <p>and it gives</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63]</span><br><span class="line">Pool.map takes 8.063436031341553 seconds</span><br></pre></td></tr></table></figure>
@@ -219,7 +219,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Multi-processing: 100%|██████████| 64&#x2F;64 [00:08&lt;00:00,  7.99it&#x2F;s]</span><br><span class="line">[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63]</span><br><span class="line">Pool.imap takes 8.06504487991333 seconds</span><br></pre></td></tr></table></figure>
 
 
-<h2 id="More-than-one-arguement-as-input"><a href="#More-than-one-arguement-as-input" class="headerlink" title="More than one arguement as input"></a>More than one arguement as input</h2><p>You may notice the function in the previous example only takes one input, which is usually a number <code>x</code>.<br>However, sometimes you may want to put more inputs in the function, then you need to use the function <code>partial</code> from <code>functools</code>.<br>Here is an example of using partial and pprint:</p>
+<h1 id="More-than-one-arguement-as-input"><a href="#More-than-one-arguement-as-input" class="headerlink" title="More than one arguement as input"></a>More than one arguement as input</h1><p>You may notice the function in the previous example only takes one input, which is usually a number <code>x</code>.<br>However, sometimes you may want to put more inputs in the function, then you need to use the function <code>partial</code> from <code>functools</code>.<br>Here is an example of using partial and pprint:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">from functools import partial</span><br><span class="line">from pprint import pprint</span><br><span class="line"></span><br><span class="line">def ChineseZodiac(x, zodiac_dict):</span><br><span class="line">    x +&#x3D; 1987</span><br><span class="line">    return (x, zodiac_dict[(x-4)%len(zodiac_dict)])</span><br><span class="line"></span><br><span class="line">animals &#x3D; [&#39;鼠&#39;, &#39;牛&#39;, &#39;虎&#39;, &#39;兔&#39;, &#39;龍&#39;, &#39;蛇&#39;, &#39;馬&#39;, &#39;羊&#39;, &#39;猴&#39;, &#39;雞&#39;, &#39;狗&#39;, &#39;豬&#39;]</span><br><span class="line">animals &#x3D; &#123;number:chinese for number, chinese in enumerate(animals)&#125;</span><br><span class="line">partial_func &#x3D; partial(ChineseZodiac, zodiac_dict &#x3D; animals)</span><br><span class="line">results &#x3D; []</span><br><span class="line">with Pool(processes &#x3D; 8) as pool:</span><br><span class="line">    for result in tqdm(pool.imap(partial_func, range(24)), total&#x3D;24, desc &#x3D; &#39;Multi-processing&#39;):</span><br><span class="line">        results.append(result)</span><br><span class="line">pprint (results)</span><br></pre></td></tr></table></figure>
 <p>Output:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">Multi-processing: 100%|██████████| 24&#x2F;24 [00:00&lt;00:00, 23082.62it&#x2F;s]</span><br><span class="line">[(1987, &#39;兔&#39;),</span><br><span class="line"> (1988, &#39;龍&#39;),</span><br><span class="line"> (1989, &#39;蛇&#39;),</span><br><span class="line"> (1990, &#39;馬&#39;),</span><br><span class="line"> (1991, &#39;羊&#39;),</span><br><span class="line"> (1992, &#39;猴&#39;),</span><br><span class="line"> (1993, &#39;雞&#39;),</span><br><span class="line"> (1994, &#39;狗&#39;),</span><br><span class="line"> (1995, &#39;豬&#39;),</span><br><span class="line"> (1996, &#39;鼠&#39;),</span><br><span class="line"> (1997, &#39;牛&#39;),</span><br><span class="line"> (1998, &#39;虎&#39;),</span><br><span class="line"> (1999, &#39;兔&#39;),</span><br><span class="line"> (2000, &#39;龍&#39;),</span><br><span class="line"> (2001, &#39;蛇&#39;),</span><br><span class="line"> (2002, &#39;馬&#39;),</span><br><span class="line"> (2003, &#39;羊&#39;),</span><br><span class="line"> (2004, &#39;猴&#39;),</span><br><span class="line"> (2005, &#39;雞&#39;),</span><br><span class="line"> (2006, &#39;狗&#39;),</span><br><span class="line"> (2007, &#39;豬&#39;),</span><br><span class="line"> (2008, &#39;鼠&#39;),</span><br><span class="line"> (2009, &#39;牛&#39;),</span><br><span class="line"> (2010, &#39;虎&#39;)]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
@@ -242,8 +242,8 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2022/01/28/mmm/" rel="prev" title="Multi-processing in python">
-      <i class="fa fa-chevron-left"></i> Multi-processing in python
+    <a href="/2022/01/28/Useful-Pacakges-Functions/" rel="prev" title="Useful-Pacakges-Functions">
+      <i class="fa fa-chevron-left"></i> Useful-Pacakges-Functions
     </a></div>
       <div class="post-nav-item"></div>
     </div>
@@ -305,7 +305,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Pool"><span class="nav-number">1.</span> <span class="nav-text">Pool</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#map-function"><span class="nav-number">2.</span> <span class="nav-text">map function</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Get-the-return-value-from-function"><span class="nav-number">3.</span> <span class="nav-text">Get the return value from function</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#More-than-one-arguement-as-input"><span class="nav-number">4.</span> <span class="nav-text">More than one arguement as input</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Pool"><span class="nav-number">1.</span> <span class="nav-text">Pool</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#map-function"><span class="nav-number">2.</span> <span class="nav-text">map function</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Get-the-return-value-from-function"><span class="nav-number">3.</span> <span class="nav-text">Get the return value from function</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#More-than-one-arguement-as-input"><span class="nav-number">4.</span> <span class="nav-text">More than one arguement as input</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -318,7 +318,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">10</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
