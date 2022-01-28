@@ -1,0 +1,32 @@
+---
+title: Notebook
+date: 2021-04-06 13:55:21
+comments: false
+---
+
+## Step-by-step software setup tutorial
+[Connect linux server to Jupyter Notebook](https://shuan4638.github.io/2021/04/09/Connect-Jupyter/)
+[Build your own github webpage with Hexo](https://shuan4638.github.io/2021/04/08/Build-Gitpage/)
+
+## Computational tool
+[RDKit](https://shuan4638.github.io/2021/04/09/rdkit)
+[Pytorch](https://shuan4638.github.io/2021/05/01/PyTorch)
+
+## Python tips
+[Defaultdict]
+[Multu-processing](https://shuan4638.github.io/2022/01/28/multiprocessing)
+[Regular Expression]
+
+## Monte Carlo (MC) introduction
+[Monte Carlo Method](https://shuan4638.github.io/2021/06/08/MC)
+[Monte Carlo Control](https://shuan4638.github.io/2021/06/08/MCcontrol)
+[Monte Carlo Tree Search](https://shuan4638.github.io/2021/06/08/MCTS)
+
+## Machine learning algorithm
+[Graph neural network (GNN)](https://shuan4638.github.io/2021/05/02/GNN)
+Attention mechanism
+
+## Acedemic Paper - Reaction prediction
+GraphRetro
+LocalRetro
+
