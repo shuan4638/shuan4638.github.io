@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Attention is all you need, and it’s still valid! Attention is all you needThe attention mechanism is proposed in a legendary paper called Attention Is All You Need by Google Brain in NIPS 2017. Since">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Attention Mechanism">
+<meta property="og:url" content="http://example.com/2022/01/29/Attention/index.html">
+<meta property="og:site_name" content="Shuan Chen">
+<meta property="og:description" content="Attention is all you need, and it’s still valid! Attention is all you needThe attention mechanism is proposed in a legendary paper called Attention Is All You Need by Google Brain in NIPS 2017. Since">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.imgur.com/ezoSjHE.png">
+<meta property="og:image" content="https://i.imgur.com/cABzEob.png">
+<meta property="article:published_time" content="2022-01-29T05:55:10.000Z">
+<meta property="article:modified_time" content="2022-01-29T08:42:20.107Z">
+<meta property="article:author" content="Shuan Chen">
+<meta property="article:tag" content="Machine learning algorithm">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/ezoSjHE.png">
+
+<link rel="canonical" href="http://example.com/2022/01/29/Attention/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Attention Mechanism | Shuan Chen</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Shuan Chen</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">PhD Student in KAIST CBE</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-resume">
+
+    <a href="/Resume/" rel="section"><i class="fa fa-file fa-fw"></i>Resume</a>
+
+  </li>
+        <li class="menu-item menu-item-music">
+
+    <a href="/Music/" rel="section"><i class="fa fa-music fa-fw"></i>Music</a>
+
+  </li>
+        <li class="menu-item menu-item-notebook">
+
+    <a href="/Notebook/" rel="section"><i class="fa fa-school fa-fw"></i>Notebook</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/29/Attention/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Shuan Chen">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shuan Chen">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Attention Mechanism
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2022-01-29 14:55:10 / Modified: 17:42:20" itemprop="dateCreated datePublished" datetime="2022-01-29T14:55:10+09:00">2022-01-29</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p> <strong><center>Attention is all you need, and it’s still valid!</center></strong></p>
+<h1 id="Attention-is-all-you-need"><a href="#Attention-is-all-you-need" class="headerlink" title="Attention is all you need"></a>Attention is all you need</h1><p>The attention mechanism is proposed in a legendary paper called <a href="https://arxiv.org/abs/1706.03762">Attention Is All You Need</a> by Google Brain in NIPS 2017. Since then, people doing machine learning are using it in almost every feild, cited over 30K times until now. What does this <strong>Attention</strong> really is?</p>
+<h1 id="Intuition-of-attention"><a href="#Intuition-of-attention" class="headerlink" title="Intuition of attention"></a>Intuition of attention</h1><p>Let’s start from an example:</p>
+<blockquote>
+<p><em><strong>Shuan is writing a paper in a KAIST office.</strong></em></p>
+</blockquote>
+<p>In this sentence we may ask several questions</p>
+<ol>
+<li>Where is Shuan?</li>
+<li>What is Shuan doing?</li>
+<li>Who is Shuan?</li>
+</ol>
+<p>To answer these three questions, we might focus on different part of the sentence. Let’s try to highlight the important terms for each question.</p>
+<ol>
+<li><em><strong>Shuan</strong></em> is writing a paper <em><strong>in a KAIST office</strong></em>. –&gt; Shuan is in a KAIST office.</li>
+<li><em><strong>Shuan</strong></em> is <em><strong>writing a paper</strong></em> in a KAIST office. –&gt; Shuan is writing paper.</li>
+<li><em><strong>Shuan</strong></em> is <em><strong>writing a paper in</strong></em> a <em><strong>KAIST</strong></em> office. –&gt; Maybe a graduate student in KAIST?</li>
+</ol>
+<p>We’d try to focus on specific part of the text for a specific question instead of reading the whole sentence. This action of <strong>focus</strong> or <strong>importance</strong> is called <em><strong>attention</strong></em> here.</p>
+<h1 id="Attention-in-machine-learning"><a href="#Attention-in-machine-learning" class="headerlink" title="Attention in machine learning"></a>Attention in machine learning</h1><p>While it may sound impossible for machine to understand such <em><strong>ATTENTION</strong></em> concept. But the team in Google Brain actually did it and that’s why it is so legendary.<br>So how does the machine understand <em><strong>ATTENTION</strong></em>?</p>
+<p>In machine learning (or Pytorch), we always represent words as tensor by tokenization and word embedding<br><img src="https://i.imgur.com/ezoSjHE.png"></p>
+<p>Now, we want the tensor of <strong>“Shuan”</strong> (Tensor1) to have the important information like <strong>“writing”</strong> (Tensor3) or <strong>“KAIST”</strong> (Tensor7) so we add the values of <strong>“writing”</strong> and <strong>“KAIST”</strong> to <strong>Shuan</strong><br><img src="https://i.imgur.com/cABzEob.png"></p>
+<p>So the tensor of Shuan now has the information from writing and KAIST, which makes it possible to answer the above three questions.</p>
+<p>But how does the machine know which value of tensor should goes to Shuan (such as writing or KAIST) and which not (such as is ,a, in)? The answer is using <strong>key and query</strong>.</p>
+<h1 id="Key-and-Query"><a href="#Key-and-Query" class="headerlink" title="Key and Query"></a>Key and Query</h1><p>To know the importance of two words (tensors), the attention mechanism obtains the importance (e) by calculating the dot product of two tensors, <strong>query tensor</strong> and <strong>key tensor</strong>.</p>
+<p><sub></sub><br>   e_{i, j}  = Q_{i}\odot K_{j}<br><sub></sub></p>
+<p>Where the querys and keys are usually obtained by linear transformation of original tensor:</p>
+<p><sub></sub><br>   Q_{i}  = Linear_{Q}(x_i)<br><sub></sub><br><sub></sub><br>    K_{i}  = Linear_{K}(x_i)<br><sub></sub></p>
+<p>The model should learn the importance by fitting the model with two linear layers, Query layer and Key layer.<br>Next, the attention score is computed through a softmax function<br><sub></sub><br>    a_{ij} = \frac{exp(e_{ij})} { \sum_{j=1} exp(e_{ij}) }<br><sub></sub></p>
+<p>The attention score are then obtained abd shown as below<br>![](<a href="https://i.imgur.com/rko4osp.png">https://i.imgur.com/rko4osp.png</a> =480x)</p>
+<p>Finally the tensor is updated by adding up the values times attention score.</p>
+<p><sub></sub><br>    x’ <em>{i}  =  x</em>{i} + \sum_{j=1} a_{ij}V_{j}, where V_{j}  = Linear_{V}(x_{j})<br><sub></sub></p>
+<p><strong><center>The model should learn the right weights for querys and keys so that the important word (tensor) pairs can get high attention score.</center></strong></p>
+<h1 id="Attention-in-pytorch"><a href="#Attention-in-pytorch" class="headerlink" title="Attention in pytorch"></a>Attention in pytorch</h1><p>It’s actually quite easy to implement in pytorch</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">import torch</span><br><span class="line">from torch import nn</span><br><span class="line"></span><br><span class="line">class Attention(nn.Module):</span><br><span class="line">    def __init__(self, d_model, dropout &#x3D; 0.1):</span><br><span class="line">        super(Attention, self).__init__()</span><br><span class="line">        self.d_model &#x3D; d_model</span><br><span class="line">        self.q_linear &#x3D; nn.Linear(d_model, d_model, bias&#x3D;False)</span><br><span class="line">        self.v_linear &#x3D; nn.Linear(d_model, d_model, bias&#x3D;False)</span><br><span class="line">        self.k_linear &#x3D; nn.Linear(d_model, d_model, bias&#x3D;False)</span><br><span class="line">        self.dropout &#x3D; nn.Dropout(dropout)</span><br><span class="line">                </span><br><span class="line">    def forward(self, x):</span><br><span class="line">        bs &#x3D; x.size(0)</span><br><span class="line">        k &#x3D; self.k_linear(x)</span><br><span class="line">        q &#x3D; self.q_linear(x)</span><br><span class="line">        v &#x3D; self.v_linear(x)</span><br><span class="line">        scores &#x3D; torch.matmul(q, k.transpose(-1, -2))</span><br><span class="line">        scores &#x3D; torch.softmax(scores, dim&#x3D;-1)</span><br><span class="line">        output &#x3D; torch.matmul(self.dropout(scores) , v)</span><br><span class="line">        return output + x</span><br></pre></td></tr></table></figure>
+
+<p>Most people add some more tricks like multi-head attention and layer normalization to make it performs better</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">class MultiHeadAttention(nn.Module):</span><br><span class="line">    def __init__(self, heads, d_model, dropout &#x3D; 0.1):</span><br><span class="line">        super(MultiHeadAttention, self).__init__()</span><br><span class="line">        self.d_model &#x3D; d_model</span><br><span class="line">        self.d_k &#x3D; d_model &#x2F;&#x2F; heads</span><br><span class="line">        self.h &#x3D; heads</span><br><span class="line">        self.q_linear &#x3D; nn.Linear(d_model, d_model, bias&#x3D;False)</span><br><span class="line">        self.v_linear &#x3D; nn.Linear(d_model, d_model, bias&#x3D;False)</span><br><span class="line">        self.k_linear &#x3D; nn.Linear(d_model, d_model, bias&#x3D;False)</span><br><span class="line">        self.dropout &#x3D; nn.Dropout(dropout)</span><br><span class="line">        self.layer_norm &#x3D; nn.LayerNorm(d_model, eps&#x3D;1e-6)</span><br><span class="line">        </span><br><span class="line">    def reset_parameters(self):</span><br><span class="line">        for p in self.parameters():</span><br><span class="line">            if p.dim() &gt; 1:</span><br><span class="line">                nn.init.xavier_uniform_(p)</span><br><span class="line">                </span><br><span class="line">    def attention(self, q, k, v):</span><br><span class="line">        scores &#x3D; torch.matmul(q, k.transpose(-2, -1)) &#x2F;  math.sqrt(self.d_k)</span><br><span class="line">        scores &#x3D; torch.softmax(scores, dim&#x3D;-1)</span><br><span class="line">        output &#x3D; torch.matmul(self.dropout(scores), v)</span><br><span class="line">        return scores, output</span><br><span class="line">    </span><br><span class="line">    def forward(self, x):</span><br><span class="line">        bs &#x3D; x.size(0)</span><br><span class="line">        k &#x3D; self.k_linear(x).view(bs, -1, self.h, self.d_k)</span><br><span class="line">        q &#x3D; self.q_linear(x).view(bs, -1, self.h, self.d_k)</span><br><span class="line">        v &#x3D; self.v_linear(x).view(bs, -1, self.h, self.d_k)</span><br><span class="line">        k &#x3D; k.transpose(1,2)</span><br><span class="line">        q &#x3D; q.transpose(1,2)</span><br><span class="line">        v &#x3D; v.transpose(1,2)</span><br><span class="line">        scores, output &#x3D; self.attention(q, k, v)</span><br><span class="line">        output &#x3D; output.transpose(1,2).contiguous().view(bs, self.d_model)</span><br><span class="line">        output &#x3D; output + x</span><br><span class="line">        output &#x3D; self.layer_norm(output)</span><br><span class="line">        return output</span><br><span class="line">        </span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Machine-learning-algorithm/" rel="tag"># Machine learning algorithm</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/01/28/MultiProcessing/" rel="prev" title="MultiProcessing in Python">
+      <i class="fa fa-chevron-left"></i> MultiProcessing in Python
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/01/29/DeepDDI/" rel="next" title="DeepDDI">
+      DeepDDI <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Attention-is-all-you-need"><span class="nav-number">1.</span> <span class="nav-text">Attention is all you need</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Intuition-of-attention"><span class="nav-number">2.</span> <span class="nav-text">Intuition of attention</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Attention-in-machine-learning"><span class="nav-number">3.</span> <span class="nav-text">Attention in machine learning</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Key-and-Query"><span class="nav-number">4.</span> <span class="nav-text">Key and Query</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Attention-in-pytorch"><span class="nav-number">5.</span> <span class="nav-text">Attention in pytorch</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Shuan Chen</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/shuan4638" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;shuan4638" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.youtube.com/channel/UCuxA_JEkqkllao4U8cFRxBQ" title="YouTube → https:&#x2F;&#x2F;www.youtube.com&#x2F;channel&#x2F;UCuxA_JEkqkllao4U8cFRxBQ" rel="noopener" target="_blank"><i class="fab fa-youtube fa-fw"></i>YouTube</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://instagram.com/shuan.75" title="Instagram → https:&#x2F;&#x2F;instagram.com&#x2F;shuan.75" rel="noopener" target="_blank"><i class="fab fa-instagram fa-fw"></i>Instagram</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shuan Chen</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'a9d3f758b5d4a5c716b9',
+      clientSecret: 'b368ce179713959f7f4248915c5c5d450c2a129d',
+      repo        : 'shuan4638.github.io',
+      owner       : 'shuan4638',
+      admin       : ['shuan4638'],
+      id          : 'a8b637782be7fceb83e5559f673bbd59',
+        language: 'en',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>

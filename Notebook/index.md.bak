@@ -7,19 +7,20 @@ comments: false
 ## Step-by-step software setup tutorial
 [Connect linux server to Jupyter Notebook](https://shuan4638.github.io/2021/04/09/Connect-Jupyter/)
 [Build your own github webpage with Hexo](https://shuan4638.github.io/2021/04/08/Build-Gitpage/)
+Share your ML models on website with Django
 
 ## Computational tool
 [RDKit](https://shuan4638.github.io/2021/04/09/rdkit)
 [Pytorch](https://shuan4638.github.io/2021/05/01/PyTorch)
 
 ## Python tips
-[Useful packages/functions](https://shuan4638.github.io/2022/01/28/Useful-Pacakges-Functions)
-[Multi-processing](https://shuan4638.github.io/2022/01/28/Multi-Processing)
+[5 very useful functions](https://shuan4638.github.io/2022/01/28/Useful-Pacakges-Functions)
+[Multi-processing](https://shuan4638.github.io/2022/01/28/MultiProcessing)
 Regular Expression
 
 ## Machine learning algorithm
 [Graph neural network (GNN)](https://shuan4638.github.io/2021/05/02/GNN)
-Attention mechanism
+[Attention mechanism] (https://shuan4638.github.io/2022/01/29/Attention)
 
 ## Monte Carlo (MC)
 [Monte Carlo Method](https://shuan4638.github.io/2021/06/08/MC)
