@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="GitGit is a very useful tool to share and retrieve codes from online, usually GitHub(https:&#x2F;&#x2F;github.com&#x2F;) or Bitbucket, and I personally use GitHub more. This article is an easy introduction of the ba">
+<meta property="og:type" content="article">
+<meta property="og:title" content="github">
+<meta property="og:url" content="http://example.com/2022/02/19/github/index.html">
+<meta property="og:site_name" content="Shuan Chen">
+<meta property="og:description" content="GitGit is a very useful tool to share and retrieve codes from online, usually GitHub(https:&#x2F;&#x2F;github.com&#x2F;) or Bitbucket, and I personally use GitHub more. This article is an easy introduction of the ba">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.imgur.com/B7oSivT.png">
+<meta property="article:published_time" content="2022-02-19T02:13:09.000Z">
+<meta property="article:modified_time" content="2022-02-19T03:20:22.777Z">
+<meta property="article:author" content="Shuan Chen">
+<meta property="article:tag" content="Step-by-step-software-setup-tutorial">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/B7oSivT.png">
+
+<link rel="canonical" href="http://example.com/2022/02/19/github/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>github | Shuan Chen</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Shuan Chen</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">PhD Student in KAIST CBE</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-resume">
+
+    <a href="/Resume/" rel="section"><i class="fa fa-file fa-fw"></i>Resume</a>
+
+  </li>
+        <li class="menu-item menu-item-music">
+
+    <a href="/Music/" rel="section"><i class="fa fa-music fa-fw"></i>Music</a>
+
+  </li>
+        <li class="menu-item menu-item-notebook">
+
+    <a href="/Notebook/" rel="section"><i class="fa fa-school fa-fw"></i>Notebook</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/19/github/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Shuan Chen">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shuan Chen">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          github
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2022-02-19 11:13:09 / Modified: 12:20:22" itemprop="dateCreated datePublished" datetime="2022-02-19T11:13:09+09:00">2022-02-19</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h1><p><a href="https://git-scm.com/">Git</a> is a very useful tool to share and retrieve codes from online, usually GitHub(<a href="https://github.com/">https://github.com/</a>) or <a href="https://bitbucket.org/">Bitbucket</a>, and I personally use GitHub more. This article is an easy introduction of the basic commands I usually use. There are roughly three categories of git commands I use the most:</p>
+<ol>
+<li>Download scripts</li>
+<li>Upload/change scripts</li>
+<li>Modifiy commits</li>
+</ol>
+<h1 id="Download-scripts"><a href="#Download-scripts" class="headerlink" title="Download scripts"></a>Download scripts</h1><p>Sometimes we read an interesting paper and we want to use the codes shared by the author. We can simply download the code by using <code>git clone</code> such as</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;kaist-amsg&#x2F;LocalRetro.git</span><br></pre></td></tr></table></figure>
+<p> and then all the scripts will be downloaded as a folder in we current directory. </p>
+<h1 id="Upload-change-scripts"><a href="#Upload-change-scripts" class="headerlink" title="Upload/change scripts"></a>Upload/change scripts</h1><p>There are three steps needed to be done to upload the scipts to github: Add-Commit-Push <br><br><img src="https://i.imgur.com/B7oSivT.png" alt><br></p>
+<h2 id="git-add"><a href="#git-add" class="headerlink" title="git add"></a>git add</h2><p>First, we can use either <code>git add .</code> or <code>git add -A</code> to add our changes to the staging area.<br>The difference between these two is that <code>git add .</code> only upload the newly added changes (does not remove anything) and <code>git add -A</code> make the everything same with our directory (including removed files)</p>
+<h2 id="git-commit"><a href="#git-commit" class="headerlink" title="git commit"></a>git commit</h2><p>Second, we should make <strong>commit</strong> to record our changes in the git history. <strong>Remember, this step does not upload the code to GitHub yet, but simply decribe our changes in a sentence!</strong> Usually I use <code>git commit -m &quot;[changes]&quot;</code> like</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m &quot;Add the attention mechanism in LocalRetro model&quot;</span><br></pre></td></tr></table></figure>
+<h2 id="git-push"><a href="#git-push" class="headerlink" title="git push"></a>git push</h2><p>Lastly, we can <strong>push</strong> our scripts to Github by simply running <code>git push</code>. The changes will show up on the GitHub page in few seconds!</p>
+<h1 id="Modify-commits"><a href="#Modify-commits" class="headerlink" title="Modify commits"></a>Modify commits</h1><p>Sometimes we may accidently commits the changes before we actully add all the changes to staging area. In this case we can use <code>git log --oneline</code> to check the recent commit and we may delete the commit we accidently made by <code>reset --hard HEAD~1</code>. Here is an example:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log --oneline</span><br></pre></td></tr></table></figure>
+<p>and it shows<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">b6c2da2 (HEAD -&gt; main, origin&#x2F;main, origin&#x2F;HEAD) Add the attention mechanism in LocalRetro model</span><br><span class="line">5d8a86e Change README</span><br><span class="line">236fb6b Add jupyter notebook</span><br><span class="line">79c66d9 Create LICENSE</span><br><span class="line">e672cfc First commit</span><br><span class="line">2ec8634 Initial commit</span><br></pre></td></tr></table></figure><br>and I can do<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reset --hard HEAD~1</span><br></pre></td></tr></table></figure><br>to remove the HEAD (most current) commit</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Step-by-step-software-setup-tutorial/" rel="tag"># Step-by-step-software-setup-tutorial</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/01/29/Attention/" rel="prev" title="Attention Mechanism">
+      <i class="fa fa-chevron-left"></i> Attention Mechanism
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Git"><span class="nav-number">1.</span> <span class="nav-text">Git</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Download-scripts"><span class="nav-number">2.</span> <span class="nav-text">Download scripts</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Upload-change-scripts"><span class="nav-number">3.</span> <span class="nav-text">Upload&#x2F;change scripts</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#git-add"><span class="nav-number">3.1.</span> <span class="nav-text">git add</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git-commit"><span class="nav-number">3.2.</span> <span class="nav-text">git commit</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git-push"><span class="nav-number">3.3.</span> <span class="nav-text">git push</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Modify-commits"><span class="nav-number">4.</span> <span class="nav-text">Modify commits</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Shuan Chen</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/shuan4638" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;shuan4638" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.youtube.com/channel/UCuxA_JEkqkllao4U8cFRxBQ" title="YouTube → https:&#x2F;&#x2F;www.youtube.com&#x2F;channel&#x2F;UCuxA_JEkqkllao4U8cFRxBQ" rel="noopener" target="_blank"><i class="fab fa-youtube fa-fw"></i>YouTube</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://instagram.com/shuan.75" title="Instagram → https:&#x2F;&#x2F;instagram.com&#x2F;shuan.75" rel="noopener" target="_blank"><i class="fab fa-instagram fa-fw"></i>Instagram</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shuan Chen</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'a9d3f758b5d4a5c716b9',
+      clientSecret: 'b368ce179713959f7f4248915c5c5d450c2a129d',
+      repo        : 'shuan4638.github.io',
+      owner       : 'shuan4638',
+      admin       : ['shuan4638'],
+      id          : '9bc4accf743c0419eb10d1abfc206a98',
+        language: 'en',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>
