@@ -7,7 +7,7 @@ comments: false
 **Ph.D. in Korea Advanced Institute of Science and Technology (KAIST), Korea**
 Sep. 2020 ~ now
 Major: Chemical and Biomolecular Engineering	
-Research topic: Machine learning/Reactivity prediciton
+Research topic: Machine learning/Reaction prediciton
 Advisor: Yousung Jung
 
 **M.S. in Korea Advanced Institute of Science and Technology (KAIST), Korea**
@@ -23,7 +23,7 @@ Major: Energy Technology
 **B.S. in National Cheng Kung University (NCKU), Taiwan**
 Sep. 2013 ~ Jan. 2018
 Major: Chemical Engineering
-Research topic: Omniphobic polymer, Artificial photosynthesis
+Research topic: Omniphobic polymer, Photocatalyst for CO2 reduction
 Advisor: Yu-Min Yang, Jih-Jen Wu
 
 ### Experience
@@ -35,12 +35,17 @@ Advisor: Chih-Wei Chu
 
 
 ### Publications
-1.  S Chen and Y Jumg, "Deep Retrosynthetic Reaction Prediction using Local Reactivity and Global Attention", JACS Au 2021
+1.  S Chen and Y Jung, "Deep Retrosynthetic Reaction Prediction using Local Reactivity and Global Attention", JACS Au 2021
 2.	G Nguyen, S Chen, TJ Jun, D Kim, "Explaining How Deep Neural Networks Forget by Deep Visualization", ICPR 2020
-3.	S Chen, HU Kim, "Designing Novel Functional Peptides by Manipulating a Temperature in the Softmax Function Coupled with Variational Autoencoder", IEEE Big Data 2019
-4.	C Chen, C Chen, S Chen, W Li and Y Yang, "Fabrication of highly transparent slippery surfaces with omniphobicity by an improved process using non-solvent-induced phase separation", Colloid and Polymer Science, vol. 296, no. 2, pp. 319-326, 2017.
+3.	C Chen, C Chen, S Chen, W Li and Y Yang, "Fabrication of highly transparent slippery surfaces with omniphobicity by an improved process using non-solvent-induced phase separation", Colloid and Polymer Science, vol. 296, no. 2, pp. 319-326, 2017.
+
+### Conferences
+1. S Chen, H Kim, "Designing Novel Functional Peptides by Manipulating a Temperature in the Softmax Function Coupled with Variational Autoencoder", IEEE Big Data, Los Angeles, US, 2019
+2. S Chen, H Kim, "A simple, but powerful machine learning method for efficient processing of chemical structures", KIChE Fall Meeting and International Symposium, Daejeon, Korea, 2019.
+
 
 ### Awards
-1. 2021 Samsung AI callenge: Rank 8
+1. 2022 Daewoong AI & Big Data Global Scholarships
 2. 2021 Daewoong AI hackathon: [1st prize](https://github.com/shuan4638/pBERT-DTI)
-3. 2020 Taiwan Scholarships (教育部與世界百大合作設置獎學金)
+3. 2021 Samsung AI callenge: Rank 8
+4. 2020 KAIST-Taiwan Top University Scholarships (教育部與世界百大合作設置獎學金)
