@@ -20,22 +20,20 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Commands to connect linux server to jupyter notebook on web browser for easier coding life Install Jupyter notebookInstall jupyter notebook on the server by simply run1pip install jupyter Run in backg">
+  <meta name="description" content="A common python package that makes everything easy when you’re dealing with csv&#x2F;excel file Referece: Yuan’s blog Load filespd.read_{filetype} is a function that used to load the csv&#x2F;exel files to the">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Connect Linux server to Jupyter notebook">
-<meta property="og:url" content="http://example.com/2021/04/09/Connect-Jupyter/index.html">
+<meta property="og:title" content="Pandas">
+<meta property="og:url" content="http://example.com/2023/03/20/pandas/index.html">
 <meta property="og:site_name" content="Shuan Chen">
-<meta property="og:description" content="Commands to connect linux server to jupyter notebook on web browser for easier coding life Install Jupyter notebookInstall jupyter notebook on the server by simply run1pip install jupyter Run in backg">
+<meta property="og:description" content="A common python package that makes everything easy when you’re dealing with csv&#x2F;excel file Referece: Yuan’s blog Load filespd.read_{filetype} is a function that used to load the csv&#x2F;exel files to the">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://i.imgur.com/Vf1IjUE.png">
-<meta property="article:published_time" content="2021-04-09T03:46:38.000Z">
-<meta property="article:modified_time" content="2021-05-01T05:53:04.992Z">
+<meta property="article:published_time" content="2023-03-19T15:00:00.000Z">
+<meta property="article:modified_time" content="2023-03-20T04:25:18.009Z">
 <meta property="article:author" content="Shuan Chen">
-<meta property="article:tag" content="Step-by-step-software-setup-tutorial">
+<meta property="article:tag" content="Python Tips">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://i.imgur.com/Vf1IjUE.png">
 
-<link rel="canonical" href="http://example.com/2021/04/09/Connect-Jupyter/">
+<link rel="canonical" href="http://example.com/2023/03/20/pandas/">
 
 
 <script id="page-configurations">
@@ -48,7 +46,7 @@
   };
 </script>
 
-  <title>Connect Linux server to Jupyter notebook | Shuan Chen</title>
+  <title>Pandas | Shuan Chen</title>
   
 
 
@@ -163,7 +161,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/09/Connect-Jupyter/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/03/20/pandas/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -176,7 +174,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Connect Linux server to Jupyter notebook
+          Pandas
         </h1>
 
         <div class="post-meta">
@@ -185,16 +183,10 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
+              
 
-              <time title="Created: 2021-04-09 12:46:38" itemprop="dateCreated datePublished" datetime="2021-04-09T12:46:38+09:00">2021-04-09</time>
+              <time title="Created: 2023-03-20 00:00:00 / Modified: 13:25:18" itemprop="dateCreated datePublished" datetime="2023-03-20T00:00:00+09:00">2023-03-20</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-05-01 14:53:04" itemprop="dateModified" datetime="2021-05-01T14:53:04+09:00">2021-05-01</time>
-              </span>
 
           
             <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
@@ -214,23 +206,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>Commands to connect linux server to jupyter notebook on web browser for easier coding life</p>
-<h2 id="Install-Jupyter-notebook"><a href="#Install-Jupyter-notebook" class="headerlink" title="Install Jupyter notebook"></a>Install Jupyter notebook</h2><p>Install jupyter notebook on the server by simply run<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install jupyter</span><br></pre></td></tr></table></figure></p>
-<h2 id="Run-in-background-session"><a href="#Run-in-background-session" class="headerlink" title="Run in background session"></a>Run in background session</h2><p>If you want to run it as a background session, run<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">screen -S jupyter-on-fly</span><br></pre></td></tr></table></figure><br>and press Ctrl+a+d to detach</p>
-<h2 id="Password-setting-and-conncetion"><a href="#Password-setting-and-conncetion" class="headerlink" title="Password setting and conncetion"></a>Password setting and conncetion</h2><p>Set password</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">jupyter notebook --generate-config</span><br><span class="line">jupyter notebook password</span><br><span class="line">Enter password:  ****</span><br><span class="line">Verify password: ****</span><br></pre></td></tr></table></figure>
-<p>and you’re on the right path if it shows the following<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[NotebookPasswordApp] Wrote hashed password to &#x2F;Users&#x2F;you&#x2F;.jupyter&#x2F;jupyter_notebook_config.json</span><br></pre></td></tr></table></figure></p>
-<p>Connect server to notebook<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jupyter notebook --ip&#x3D;[server_ip_address] --port&#x3D;8888 --allow-root --no-browser</span><br></pre></td></tr></table></figure></p>
-<p>For example<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jupyter notebook --ip&#x3D;0.0.0.0 --port&#x3D;8888 --allow-root --no-browser</span><br></pre></td></tr></table></figure></p>
-<h2 id="Connect-to-web-browser"><a href="#Connect-to-web-browser" class="headerlink" title="Connect to web browser"></a>Connect to web browser</h2><p>Use your webbrowser to connect </p>
-<p><a href="http://[server_ip_address]:8888/">http://[server_ip_address]:8888/</a></p>
-<p>and type the password you set at the previous step</p>
-<h2 id="Import-virtual-environment"><a href="#Import-virtual-environment" class="headerlink" title="Import virtual environment"></a>Import virtual environment</h2><p>If you wish to use any virtual environment in Jupyter notebook, first intall ipykernel<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install --user ipykernel</span><br><span class="line">python -m ipykernel install --user --name&#x3D;[your-env-name]</span><br></pre></td></tr></table></figure><br>It should print this if you do it correctly<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Installed kernelspec [your-env-name] in ~&#x2F;jupyter&#x2F;kernels&#x2F;[your-env-name]</span><br></pre></td></tr></table></figure></p>
-<p>You will be able to see something like this (for me I have virtual environment called “rdenv” for rdkit)</p>
-<p><img src="https://i.imgur.com/Vf1IjUE.png" alt></p>
-<p>If you want to uninstall, just simply write<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install --user ipykernel</span><br><span class="line">jupyter kernelspec uninstall [your-env-name]</span><br></pre></td></tr></table></figure></p>
-<h2 id="Optional-connect-the-server-from-other-IP-address"><a href="#Optional-connect-the-server-from-other-IP-address" class="headerlink" title="(Optional) connect the server from other IP address"></a>(Optional) connect the server from other IP address</h2><p>If you want to login this notebook with any IP, find jupyter_notebook_config.py at <code>~/.jupyter</code><br>and change the following line (around line 204):<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">c.NotebookApp.allow_origin &#x3D; &#39;*&#39; # line 48</span><br><span class="line">c.NotebookApp.ip &#x3D; &#39;0.0.0.0&#39;  # line 204</span><br></pre></td></tr></table></figure></p>
-
+        <p>A common python package that makes everything easy when you’re dealing with csv/excel file</p>
+<p>Referece: <a href="https://heliotrope-toad-971.notion.site/Pandas-539e35ef992a4aeaa24d416d24b833a9">Yuan’s blog</a></p>
+<h2 id="Load-files"><a href="#Load-files" class="headerlink" title="Load files"></a>Load files</h2><p>pd.read_{filetype} is a function that used to load the csv/exel files to the workspace as a data type called DataFrame (<code>df</code> in short)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import pandas as pd</span><br><span class="line"># 1. load csv file</span><br><span class="line">df &#x3D; pd.read_csv(&#39;data.csv&#39;)</span><br><span class="line"># 2. load excel file</span><br><span class="line">df &#x3D; pd.read_excel(&#39;data.xlsx&#39;)</span><br></pre></td></tr></table></figure></p>
+<h2 id="Display-data"><a href="#Display-data" class="headerlink" title="Display data"></a>Display data</h2><p>Quick peek to the whole data distribution.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># 1. display first n data</span><br><span class="line">df.head(n)</span><br><span class="line"># 2. display last n data</span><br><span class="line">df.tail(n)</span><br><span class="line"># 3. display the column*length of dataframe</span><br><span class="line">df.shape</span><br><span class="line"># 4. display the name of the columns</span><br><span class="line">df.columns</span><br><span class="line"># 5. display the type of the data</span><br><span class="line">df.dtypes</span><br><span class="line"># 6. display the general info of dataframe</span><br><span class="line">df.info()</span><br><span class="line"># 7. display the statistics of the data</span><br><span class="line">df.describe()</span><br></pre></td></tr></table></figure></p>
+<h2 id="Data-filtering"><a href="#Data-filtering" class="headerlink" title="Data filtering"></a>Data filtering</h2><p>Similar to the filter function in excel!<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 1. Filtering colunms</span><br><span class="line">df[[&#39;column1&#39;, &#39;column2&#39;]]</span><br><span class="line"># 2. Filtering specific criterion</span><br><span class="line">df[df[&#39;column&#39;] &#x3D;&#x3D; value]</span><br><span class="line"># 3. Filtering with multiple criterions</span><br><span class="line">df[(df[&#39;column1&#39;] &#x3D;&#x3D; value1) &amp; (df[&#39;column2&#39;] &#x3D;&#x3D; value2)]</span><br></pre></td></tr></table></figure></p>
+<h2 id="Data-addition-removal"><a href="#Data-addition-removal" class="headerlink" title="Data addition/removal"></a>Data addition/removal</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 1. Concatenate multiple dataframes</span><br><span class="line">df_merged &#x3D; pd.concat([df1, df2, df3])</span><br><span class="line"># 2. Remove column(s)</span><br><span class="line">df.drop(columns&#x3D;[&#39;column&#39;])</span><br><span class="line"># 3. Rename column(s)</span><br><span class="line">df.rename(columns&#x3D;&#123;&#39;old_column&#39;: &#39;new_column&#39;&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="Data-processing"><a href="#Data-processing" class="headerlink" title="Data processing"></a>Data processing</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 1. sort the dataframe by value</span><br><span class="line">df.sort_values(by&#x3D;&#39;column&#39;)</span><br><span class="line"># 2. Data grouping</span><br><span class="line">df.groupby(&#39;column&#39;).mean()</span><br><span class="line"># 3. Change the data type to time</span><br><span class="line">df[&#39;date&#39;] &#x3D; pd.to_datetime(df[&#39;column&#39;])</span><br><span class="line"># 4.Make a new column based on processing other column</span><br><span class="line">df[&#39;month&#39;] &#x3D; df[&#39;date&#39;].apply(lambda x: x.month)</span><br></pre></td></tr></table></figure>
+<h2 id="Data-cleaning"><a href="#Data-cleaning" class="headerlink" title="Data cleaning"></a>Data cleaning</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># 1. Check any null data in dataframe</span><br><span class="line">df.isnull().sum()</span><br><span class="line"># 2. Remove all null data in dataframe</span><br><span class="line">df.dropna(axis&#x3D;1, inplace&#x3D;True)</span><br><span class="line"># 3. Remove duplicates</span><br><span class="line">df.drop_duplicates(inplace&#x3D;True)</span><br><span class="line"># 4-1 Replace data null value in dataframe with maen value</span><br><span class="line">df.fillna(df.mean(), inplace&#x3D;True)</span><br><span class="line"># 4-2 Replace data null value in dataframe with previous value</span><br><span class="line">df.fillna(method&#x3D;&#39;ffill&#39;, inplace&#x3D;True)</span><br><span class="line"># 4-3 Replace data null value in dataframe with next value</span><br><span class="line">df.fillna(method&#x3D;&#39;bfill&#39;, inplace&#x3D;True)</span><br></pre></td></tr></table></figure>
+<h2 id="Export-DataFrame"><a href="#Export-DataFrame" class="headerlink" title="Export DataFrame"></a>Export DataFrame</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 1. Export to csv file</span><br><span class="line">df.to_csv(&#39;output.csv&#39;, index&#x3D;False)</span><br><span class="line"># 2. Export to excel file</span><br><span class="line">df.to_excel(&#39;output.xlsx&#39;, index&#x3D;False)</span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -239,7 +223,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Step-by-step-software-setup-tutorial/" rel="tag"># Step-by-step-software-setup-tutorial</a>
+              <a href="/tags/Python-Tips/" rel="tag"># Python Tips</a>
           </div>
 
         
@@ -248,13 +232,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/04/08/Build-Gitpage/" rel="prev" title="Build your own github page with Hexo">
-      <i class="fa fa-chevron-left"></i> Build your own github page with Hexo
+    <a href="/2022/02/19/github/" rel="prev" title="github">
+      <i class="fa fa-chevron-left"></i> github
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/04/09/rdkit/" rel="next" title="RDKit - the python package for in-silico molecule programming">
-      RDKit - the python package for in-silico molecule programming <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -314,7 +295,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Install-Jupyter-notebook"><span class="nav-number">1.</span> <span class="nav-text">Install Jupyter notebook</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Run-in-background-session"><span class="nav-number">2.</span> <span class="nav-text">Run in background session</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Password-setting-and-conncetion"><span class="nav-number">3.</span> <span class="nav-text">Password setting and conncetion</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Connect-to-web-browser"><span class="nav-number">4.</span> <span class="nav-text">Connect to web browser</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Import-virtual-environment"><span class="nav-number">5.</span> <span class="nav-text">Import virtual environment</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Optional-connect-the-server-from-other-IP-address"><span class="nav-number">6.</span> <span class="nav-text">(Optional) connect the server from other IP address</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Load-files"><span class="nav-number">1.</span> <span class="nav-text">Load files</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Display-data"><span class="nav-number">2.</span> <span class="nav-text">Display data</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Data-filtering"><span class="nav-number">3.</span> <span class="nav-text">Data filtering</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Data-addition-removal"><span class="nav-number">4.</span> <span class="nav-text">Data addition&#x2F;removal</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Data-processing"><span class="nav-number">5.</span> <span class="nav-text">Data processing</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Data-cleaning"><span class="nav-number">6.</span> <span class="nav-text">Data cleaning</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Export-DataFrame"><span class="nav-number">7.</span> <span class="nav-text">Export DataFrame</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -461,7 +442,7 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
       repo        : 'shuan4638.github.io',
       owner       : 'shuan4638',
       admin       : ['shuan4638'],
-      id          : 'dad0a644f998e294fdb2e8c666ed9790',
+      id          : '6f6700e9c27e1345eaab4928e2a2424a',
         language: 'en',
       distractionFreeMode: true
     });
