@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="As a python learner, sometimes we see something like @cache before a function in other’s code in GitHub. For example1234@cachedef function():    ###    reutrn output This “@” is called decorator. This">
+  <meta name="description" content="As a python learner, sometimes we see something like @cache before a function in other’s code in GitHub. For example1234@cachedef function():    ###    reutrn output This @ is called decorator. This a">
 <meta property="og:type" content="article">
-<meta property="og:title" content="decorator">
+<meta property="og:title" content="Decorator">
 <meta property="og:url" content="http://example.com/2023/04/03/decorator/index.html">
 <meta property="og:site_name" content="Shuan Chen">
-<meta property="og:description" content="As a python learner, sometimes we see something like @cache before a function in other’s code in GitHub. For example1234@cachedef function():    ###    reutrn output This “@” is called decorator. This">
+<meta property="og:description" content="As a python learner, sometimes we see something like @cache before a function in other’s code in GitHub. For example1234@cachedef function():    ###    reutrn output This @ is called decorator. This a">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-04-03T02:50:13.000Z">
-<meta property="article:modified_time" content="2023-04-03T02:54:34.671Z">
+<meta property="article:modified_time" content="2023-04-03T02:55:23.022Z">
 <meta property="article:author" content="Shuan Chen">
 <meta property="article:tag" content="Python Tips">
 <meta name="twitter:card" content="summary">
@@ -46,7 +46,7 @@
   };
 </script>
 
-  <title>decorator | Shuan Chen</title>
+  <title>Decorator | Shuan Chen</title>
   
 
 
@@ -174,7 +174,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          decorator
+          Decorator
         </h1>
 
         <div class="post-meta">
@@ -185,7 +185,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2023-04-03 11:50:13 / Modified: 11:54:34" itemprop="dateCreated datePublished" datetime="2023-04-03T11:50:13+09:00">2023-04-03</time>
+              <time title="Created: 2023-04-03 11:50:13 / Modified: 11:55:23" itemprop="dateCreated datePublished" datetime="2023-04-03T11:50:13+09:00">2023-04-03</time>
             </span>
 
           
@@ -208,7 +208,7 @@
       
         <p>As a python learner, sometimes we see something like <code>@cache</code> before a function in other’s code in GitHub.</p>
 <p>For example<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@cache</span><br><span class="line">def function():</span><br><span class="line">    ###</span><br><span class="line">    reutrn output</span><br></pre></td></tr></table></figure></p>
-<p>This “@” is called <strong>decorator</strong>. This article aims to explain what is “@” and how useful is this “@”</p>
+<p>This <code>@</code> is called <strong>decorator</strong>. This article aims to explain what is <code>@</code> and how useful is this <code>@</code></p>
 <p>Referece: <a href="https://myapollo.com.tw/blog/python-decorator-tutorial/?fbclid=IwAR3-8tZbc2q-P5EOQXzz7NVCAqp4_5r5Ky60cb6fSZaHgBJqlUkDrvygKcs">Amo Chen ‘s blog</a></p>
 <h2 id="Understand-“why-decorator”-from-example"><a href="#Understand-“why-decorator”-from-example" class="headerlink" title="Understand “why decorator” from example"></a>Understand “why decorator” from example</h2><p>Let’s say we have three functions to calculate molecular similarity:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">def similarity1(mol1, mol2):</span><br><span class="line">    ###</span><br><span class="line">    return score1</span><br><span class="line"></span><br><span class="line">def similarity2(mol1, mol2):</span><br><span class="line">    ###</span><br><span class="line">    return score2</span><br><span class="line"></span><br><span class="line">def similarity3(mol1, mol2):</span><br><span class="line">    ###</span><br><span class="line">    return score3</span><br></pre></td></tr></table></figure></p>
 <p>If we want to know the run time of each function, we may need to edit the function one by one, such as </p>
