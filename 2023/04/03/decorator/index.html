@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="As a python learner, sometimes we see something like @cache before a function in other’s code in GitHub. For example1234@cachedef function():    ###    reutrn output This “@” is called “decorator”. Th">
+<meta property="og:type" content="article">
+<meta property="og:title" content="decorator">
+<meta property="og:url" content="http://example.com/2023/04/03/decorator/index.html">
+<meta property="og:site_name" content="Shuan Chen">
+<meta property="og:description" content="As a python learner, sometimes we see something like @cache before a function in other’s code in GitHub. For example1234@cachedef function():    ###    reutrn output This “@” is called “decorator”. Th">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-04-03T02:50:13.000Z">
+<meta property="article:modified_time" content="2023-04-03T02:51:54.578Z">
+<meta property="article:author" content="Shuan Chen">
+<meta property="article:tag" content="Python Tips">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2023/04/03/decorator/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>decorator | Shuan Chen</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Shuan Chen</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">PhD Student in KAIST CBE</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-resume">
+
+    <a href="/Resume/" rel="section"><i class="fa fa-file fa-fw"></i>Resume</a>
+
+  </li>
+        <li class="menu-item menu-item-music">
+
+    <a href="/Music/" rel="section"><i class="fa fa-music fa-fw"></i>Music</a>
+
+  </li>
+        <li class="menu-item menu-item-notebook">
+
+    <a href="/Notebook/" rel="section"><i class="fa fa-school fa-fw"></i>Notebook</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/04/03/decorator/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Shuan Chen">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shuan Chen">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          decorator
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2023-04-03 11:50:13 / Modified: 11:51:54" itemprop="dateCreated datePublished" datetime="2023-04-03T11:50:13+09:00">2023-04-03</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>As a python learner, sometimes we see something like <code>@cache</code> before a function in other’s code in GitHub.</p>
+<p>For example<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@cache</span><br><span class="line">def function():</span><br><span class="line">    ###</span><br><span class="line">    reutrn output</span><br></pre></td></tr></table></figure></p>
+<p>This “@” is called “decorator”. This article aims to explain what is “@” and how useful is this “@”</p>
+<p>Referece: <a href="https://myapollo.com.tw/blog/python-decorator-tutorial/?fbclid=IwAR3-8tZbc2q-P5EOQXzz7NVCAqp4_5r5Ky60cb6fSZaHgBJqlUkDrvygKcs">Amo Chen ‘s blog</a></p>
+<h2 id="Understand-“why-decorator”-from-example"><a href="#Understand-“why-decorator”-from-example" class="headerlink" title="Understand “why decorator” from example"></a>Understand “why decorator” from example</h2><p>Let’s say we have three functions to calculate molecular similarity:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">def similarity1(mol1, mol2):</span><br><span class="line">    ###</span><br><span class="line">    return score1</span><br><span class="line"></span><br><span class="line">def similarity2(mol1, mol2):</span><br><span class="line">    ###</span><br><span class="line">    return score2</span><br><span class="line"></span><br><span class="line">def similarity3(mol1, mol2):</span><br><span class="line">    ###</span><br><span class="line">    return score3</span><br></pre></td></tr></table></figure></p>
+<p>If we want to know the run time of each function, we may need to edit the function one by one, such as </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">import time</span><br><span class="line"></span><br><span class="line">def similarity1(mol1, mol2):</span><br><span class="line">    start_time &#x3D; time.time()</span><br><span class="line">    ###</span><br><span class="line">    end_time &#x3D; time.time()</span><br><span class="line">    run_time1 &#x3D; end_time-start_time</span><br><span class="line">    return score1, run_time1</span><br><span class="line"></span><br><span class="line">def similarity2(mol1, mol2):</span><br><span class="line">    start_time &#x3D; time.time()</span><br><span class="line">    ###</span><br><span class="line">    end_time &#x3D; time.time()</span><br><span class="line">    run_time2 &#x3D; end_time-start_time</span><br><span class="line">    return score2, run_time2</span><br><span class="line"></span><br><span class="line">def similarity3(mol1, mol2):</span><br><span class="line">    start_time &#x3D; time.time()</span><br><span class="line">    ###</span><br><span class="line">    end_time &#x3D; time.time()</span><br><span class="line">    run_time3 &#x3D; end_time-start_time</span><br><span class="line">    return score3, run_time3</span><br></pre></td></tr></table></figure>
+<p>when you run the code of these functions, if should give</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">print (similarity1(mol1, mol2)) # score1, runtime1</span><br><span class="line">print (similarity2(mol1, mol2)) # score2, runtime2</span><br><span class="line">print (similarity3(mol1, mol2)) # score3, runtime3</span><br></pre></td></tr></table></figure>
+<p>If we want to insepct the time for more functions, such operation is time-consuming and make the scripts very lengthy.</p>
+<h2 id="One-for-all-decorator"><a href="#One-for-all-decorator" class="headerlink" title="One for all - decorator"></a>One for all - decorator</h2><p>It would be great if there is a function that can be use on top of a function, which add the runtime as an additional ouput of each function. Yes, this is what decorator do: <strong>the function of function</strong>.</p>
+<p>you define a <strong>decorator</strong> and put the extra operation you want to do in the wrapper function:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">def decorator(function):</span><br><span class="line">    def wrapper(*args, **kwargs):</span><br><span class="line">        # do somthing before function</span><br><span class="line">        output &#x3D; function(*args, **kwargs)</span><br><span class="line">        # do somthing after function</span><br><span class="line">        return output</span><br><span class="line">    return wrapper</span><br></pre></td></tr></table></figure>
+<p>When you write<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@decorator</span><br><span class="line">def function():</span><br><span class="line">    ###</span><br><span class="line">    return output</span><br></pre></td></tr></table></figure><br>it is equivalent to<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function &#x3D; decorator(function)</span><br></pre></td></tr></table></figure></p>
+<p>Hard to undertand? Let’s write a decorator called <strong>timeit</strong> to get the time of running a function:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">import functools</span><br><span class="line">import time</span><br><span class="line"></span><br><span class="line">def timeit(function):</span><br><span class="line">    @functools.wraps(function) # keeps the info of original function</span><br><span class="line">    def wrapper(*args, **kwargs):</span><br><span class="line">        start_time &#x3D; time.time()</span><br><span class="line">        output &#x3D; function(*args, **kwargs)</span><br><span class="line">        end_time &#x3D; time.time()</span><br><span class="line">        run_time &#x3D; end_time-start_time</span><br><span class="line">        return output, run_time</span><br><span class="line">    return wrapper</span><br></pre></td></tr></table></figure></p>
+<p> <em>BTW, args and kwargs are the abbreviations of “arguments” and “keyword arguments”.</em></p>
+<p>and put this <strong>decorator</strong> in front of each function</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">@timeit</span><br><span class="line">def similarity1(mol1, mol2):</span><br><span class="line">    ###</span><br><span class="line">    return score1</span><br><span class="line">    </span><br><span class="line">@timeit</span><br><span class="line">def similarity2(mol1, mol2):</span><br><span class="line">    ###</span><br><span class="line">    return score2</span><br><span class="line">    </span><br><span class="line">@timeit</span><br><span class="line">def similarity3(mol1, mol2):</span><br><span class="line">    ###</span><br><span class="line">    return score3</span><br></pre></td></tr></table></figure>
+<p>Then the output will be exactly same with the previous outputs:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">print (similarity1(mol1, mol2)) # score1, runtime1</span><br><span class="line">print (similarity2(mol1, mol2)) # score2, runtime2</span><br><span class="line">print (similarity3(mol1, mol2)) # score3, runtime3</span><br></pre></td></tr></table></figure>
+<p>Amazing!</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Python-Tips/" rel="tag"># Python Tips</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/03/20/pandas/" rel="prev" title="Pandas">
+      <i class="fa fa-chevron-left"></i> Pandas
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Understand-%E2%80%9Cwhy-decorator%E2%80%9D-from-example"><span class="nav-number">1.</span> <span class="nav-text">Understand “why decorator” from example</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#One-for-all-decorator"><span class="nav-number">2.</span> <span class="nav-text">One for all - decorator</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Shuan Chen</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/shuan4638" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;shuan4638" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.youtube.com/channel/UCuxA_JEkqkllao4U8cFRxBQ" title="YouTube → https:&#x2F;&#x2F;www.youtube.com&#x2F;channel&#x2F;UCuxA_JEkqkllao4U8cFRxBQ" rel="noopener" target="_blank"><i class="fab fa-youtube fa-fw"></i>YouTube</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://instagram.com/shuan.75" title="Instagram → https:&#x2F;&#x2F;instagram.com&#x2F;shuan.75" rel="noopener" target="_blank"><i class="fab fa-instagram fa-fw"></i>Instagram</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shuan Chen</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'a9d3f758b5d4a5c716b9',
+      clientSecret: 'b368ce179713959f7f4248915c5c5d450c2a129d',
+      repo        : 'shuan4638.github.io',
+      owner       : 'shuan4638',
+      admin       : ['shuan4638'],
+      id          : 'e4cb6b9fdcc859cbb698134b44bb2791',
+        language: 'en',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>
